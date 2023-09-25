@@ -1,196 +1,177 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com</groupId>
-  <artifactId>OGINE</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <groupId>com.fapethedev</groupId>
+    <artifactId>OGINE</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <name>OGINE</name>
-  <url>http://maven.apache.org</url>
+    <name>OGINE</name>
+    <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-  <build>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.1</version>
-          <configuration>
-              <target>17</target>
-              <release>17</release>
-          </configuration>
-        </plugin>
-      </plugins>
-      
-      <resources>
-          <resource>
-              <directory>src/main/resources</directory>
-          </resource>
-      </resources>
-  </build>
-  
-  <dependencies>
-  
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.9.2</version>
-      <scope>test</scope>  
-    </dependency>
-    
-    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->  
-    <dependency>
-   		<groupId>mysql</groupId>
- 		<artifactId>mysql-connector-java</artifactId>
-   		<version>8.0.32</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/org.swinglabs/swingx -->
-	<dependency>
-    	<groupId>org.swinglabs</groupId>
-    	<artifactId>swingx</artifactId>
-		<version>1.6.1</version>
-	</dependency>
-		
-	<!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
-	<dependency>
-    	<groupId>com.toedter</groupId>
-    	<artifactId>jcalendar</artifactId>
-    	<version>1.4</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
-	<dependency>
-    	<groupId>net.sf.jasperreports</groupId>
-    	<artifactId>jasperreports</artifactId>
-    	<version>6.20.0</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/br.com.damsete/ireport -->
-	<dependency>
-    	<groupId>br.com.damsete</groupId>
-    	<artifactId>ireport</artifactId>
-    	<version>0.0.3</version>
-	</dependency>
-	
-    <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
-    <dependency>
-    <groupId>com.google.zxing</groupId>
-    <artifactId>core</artifactId>
-    <version>3.5.1</version>
-    </dependency>
-    
-    <!-- https://mvnrepository.com/artifact/com.google.zxing/javase -->
-    <dependency>
-        <groupId>com.google.zxing</groupId>
-        <artifactId>javase</artifactId>
-        <version>3.5.1</version>
-    </dependency>
-    
-	<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-	<dependency>
-	  <groupId>org.projectlombok</groupId>
-	  <artifactId>lombok</artifactId>
-	  <version>1.18.10</version>
-	  <scope>provided</scope>
-	</dependency>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <target>17</target>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+        </plugins>
 
-	<!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
-	<dependency>
-	    <groupId>org.jfree</groupId>
-	    <artifactId>jfreechart</artifactId>
-	    <version>1.5.4</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/org.jfree/org.jfree.chart3d -->
-	<dependency>
-	    <groupId>org.jfree</groupId>
-	    <artifactId>org.jfree.chart3d</artifactId>
-	    <version>2.1.0</version>
-	</dependency>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
 
-	
-	<!--  -->
-	<dependency>
-    	<groupId>com.twelvemonkeys.imageio</groupId>
-    	<artifactId>imageio-jpeg</artifactId>
-    	<version>3.9.4</version>
-	</dependency>
-	
-	<dependency>
-    	<groupId>com.twelvemonkeys.imageio</groupId>
-    	<artifactId>imageio-tiff</artifactId>
-    	<version>3.9.4</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/net.java.timingframework/timingframework-swing -->
-	<dependency>
-	    <groupId>net.java.timingframework</groupId>
-	    <artifactId>timingframework-swing</artifactId>
-	    <version>7.3.1</version>
-	</dependency>
-	
-	<dependency>
-		 <groupId>net.java.dev.timingframework</groupId>
-		 <artifactId>timingframework</artifactId>
-		 <version>1.0</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/com.object-refinery/orsoncharts -->
-	<dependency>
-	    <groupId>com.object-refinery</groupId>
-	    <artifactId>orsoncharts</artifactId>
-	    <version>1.7</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/org.apache/log4j -->
-	<dependency>
-	    <groupId>org.apache.logging.log4j</groupId>
-	    <artifactId>log4j-api</artifactId>
-	    <version>2.19.0</version>
-	</dependency>
-	
-	<!-- -->
-    <dependency>
-    	<groupId>com.formdev</groupId>
-    	<artifactId>flatlaf</artifactId>
-    	<version>2.6</version>
-    </dependency>
-    
-    <dependency>
-    	<groupId>com.formdev</groupId>
-    	<artifactId>flatlaf-swingx</artifactId>
-    	<version>2.6</version>
-    </dependency>
-    
-    <dependency>
-    	<groupId>com.formdev</groupId>
-    	<artifactId>flatlaf-intellij-themes</artifactId>
-    	<version>2.6</version>
-    </dependency>
-    
-    <dependency>
-    	<groupId>com.weblookandfeel</groupId>
-    	<artifactId>weblaf-ui</artifactId>
-    	<version>1.2.13</version>
-    </dependency>
-    
-    <dependency>
-    	<groupId>org.openjfx</groupId>
-    	<artifactId>javafx-controls</artifactId>
-    	<version>17</version>
-	</dependency>
-      <dependency>
-          <groupId>org.jetbrains</groupId>
-          <artifactId>annotations</artifactId>
-          <version>23.0.0</version>
-          <scope>compile</scope>
-      </dependency>
+    <dependencies>
 
-  </dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.swinglabs/swingx -->
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swingx</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+        <dependency>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.20.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.google.zxing/javase -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>javase</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.26</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jfree/org.jfree.chart3d -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>org.jfree.chart3d</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+
+        <!--  -->
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-jpeg</artifactId>
+            <version>3.9.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-tiff</artifactId>
+            <version>3.9.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.java.timingframework/timingframework-swing -->
+        <dependency>
+            <groupId>net.java.timingframework</groupId>
+            <artifactId>timingframework-swing</artifactId>
+            <version>7.3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.java.dev.timingframework</groupId>
+            <artifactId>timingframework</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.object-refinery/orsoncharts -->
+        <dependency>
+            <groupId>com.object-refinery</groupId>
+            <artifactId>orsoncharts</artifactId>
+            <version>1.7</version>
+        </dependency>
+
+        <!-- -->
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-swingx</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-intellij-themes</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.weblookandfeel</groupId>
+            <artifactId>weblaf-ui</artifactId>
+            <version>1.2.13</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>24.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+    </dependencies>
 </project>
