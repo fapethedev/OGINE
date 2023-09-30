@@ -228,6 +228,6 @@ public class ArrowButton extends BasicArrowButton implements UIResource
 		if(vert && parent instanceof JComponent && FlatUIUtils.hasRoundBorder((JComponent)parent))
 			x -= scale(parent.getComponentOrientation().isLeftToRight() ? 1 : -1);
 
-		FlatUIUtils.paintArrow(g, x, 0, getWidth(), getHeight(), getDirection(), chevron, getArrowWidth(), getXOffset(), getYOffset());
+		FlatUIUtils.paintArrow(g, x, 0, getWidth(), getHeight(), getDirection(), chevron, getArrowWidth(), 1, getXOffset(), getYOffset());
 	}
 }
