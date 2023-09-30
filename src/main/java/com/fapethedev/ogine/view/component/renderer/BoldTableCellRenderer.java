@@ -10,7 +10,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.lowagie.text.Font;
 
 /**
@@ -87,11 +87,11 @@ public class BoldTableCellRenderer extends DefaultTableCellRenderer
             Border border = null;
             if(isSelected) 
             {
-                border = BorderFactory.createLineBorder(OgineColor.BELGE, 1);
+                border = BorderFactory.createLineBorder(Colors.BELGE, 1);
             }
             if(border == null) 
             {
-                border = BorderFactory.createLineBorder(OgineColor.BELGE, 1);
+                border = BorderFactory.createLineBorder(Colors.BELGE, 1);
             }
             setBorder(border);
 

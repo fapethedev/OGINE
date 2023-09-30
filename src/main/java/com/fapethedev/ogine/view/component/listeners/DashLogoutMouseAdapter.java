@@ -5,7 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import com.lowagie.text.Font;
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.button.DashOButton;
 
 public class DashLogoutMouseAdapter extends MouseAdapter
@@ -18,7 +18,7 @@ public class DashLogoutMouseAdapter extends MouseAdapter
 		{
 			button.setFont(button.getFont().deriveFont(Font.UNDERLINE));
 			button.setForeground(Color.LIGHT_GRAY);
-			button.setBackground(OgineColor.DARK_RED);
+			button.setBackground(Colors.DARK_RED);
 		}
 	}
 	
@@ -31,7 +31,7 @@ public class DashLogoutMouseAdapter extends MouseAdapter
 		{
 			button.setFont(button.getFont().deriveFont(Font.BOLD));
 			button.setForeground(Color.WHITE);
-			button.setBackground(OgineColor.RED);
+			button.setBackground(Colors.RED);
 		}
 	}
 
@@ -42,7 +42,7 @@ public class DashLogoutMouseAdapter extends MouseAdapter
 		super.mouseEntered(e);
 		if(e.getSource() instanceof DashOButton button)
 		{
-			button.setBackground(OgineColor.LIGHT_RED);
+			button.setBackground(Colors.LIGHT_RED);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class DashLogoutMouseAdapter extends MouseAdapter
 		super.mouseExited(e);
 		if(e.getSource() instanceof DashOButton button)
 		{
-			button.setBackground(OgineColor.RED);
+			button.setBackground(Colors.RED);
 		}
 	}
 }

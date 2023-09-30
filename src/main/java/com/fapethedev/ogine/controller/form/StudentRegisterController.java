@@ -6,7 +6,6 @@ import com.fapethedev.ogine.model.database.exception.StudentManagerException;
 import com.fapethedev.ogine.utilities.*;
 import com.fapethedev.ogine.view.component.field.OTextField;
 import com.fapethedev.ogine.view.component.label.Message;
-import com.ogine.utilities.*;
 import com.fapethedev.ogine.view.component.border.RoundedBorder;
 import com.fapethedev.ogine.view.component.panel.SliderPanel;
 import com.fapethedev.ogine.view.menu.MainMenu;
@@ -631,7 +630,7 @@ public class StudentRegisterController
                                     OTextField fatnF, OTextField fatfF, OTextField mothF, OTextField motnF,
                                     OTextField motfF, OTextField tutoF, OTextField tutnF, OTextField tutfF,
                                     OTextField reliF, OTextField phonF, OTextField addrF) {
-		pp.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, OgineColor.DARK_BLUE, Color.LIGHT_GRAY));
+		pp.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Colors.DARK_BLUE, Color.LIGHT_GRAY));
 		lastF.setDefaultBorderColor(Color.BLACK);
 		firsF.setDefaultBorderColor(Color.BLACK);
 		birtF.setBorder(new RoundedBorder(Color.BLACK));

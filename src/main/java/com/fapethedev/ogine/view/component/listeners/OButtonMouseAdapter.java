@@ -5,7 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import com.lowagie.text.Font;
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.button.OButton;
 
 public class OButtonMouseAdapter extends MouseAdapter 
@@ -18,9 +18,9 @@ public class OButtonMouseAdapter extends MouseAdapter
 		if(e.getSource() instanceof OButton button)
 		{
 			button.setFont(button.getFont().deriveFont(Font.UNDERLINE));
-			button.setForeground(OgineColor.BELGE);
-			button.setBackground(OgineColor.LIGHT_BLUE);
-			button.setBorderColor(OgineColor.LIGHT_BLUE);
+			button.setForeground(Colors.BELGE);
+			button.setBackground(Colors.LIGHT_BLUE);
+			button.setBorderColor(Colors.LIGHT_BLUE);
 		}
 	}
 

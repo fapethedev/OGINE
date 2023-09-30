@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.button.OButton;
 
 public class NewFormButAdapter extends MouseAdapter 
@@ -16,7 +16,7 @@ public class NewFormButAdapter extends MouseAdapter
 		if(e.getSource() instanceof OButton newStudentRegisterFormBut)
 		{
 			newStudentRegisterFormBut.setFont(newStudentRegisterFormBut.getFont().deriveFont(com.lowagie.text.Font.UNDERLINE));
-			newStudentRegisterFormBut.setForeground(OgineColor.BELGE);
+			newStudentRegisterFormBut.setForeground(Colors.BELGE);
 			newStudentRegisterFormBut.setBackground(Color.DARK_GRAY);
 			newStudentRegisterFormBut.setBorderColor(Color.DARK_GRAY);
 		}
@@ -28,7 +28,7 @@ public class NewFormButAdapter extends MouseAdapter
 		if(e.getSource() instanceof OButton newStudentRegisterFormBut)
 		{
 			newStudentRegisterFormBut.setFont(newStudentRegisterFormBut.getFont().deriveFont(Font.BOLD));
-			newStudentRegisterFormBut.setBackground(OgineColor.BELGE);
+			newStudentRegisterFormBut.setBackground(Colors.BELGE);
 	    	newStudentRegisterFormBut.setForeground(Color.BLACK);
 	    	newStudentRegisterFormBut.setBorderColor(Color.BLACK);
 		}
@@ -39,7 +39,7 @@ public class NewFormButAdapter extends MouseAdapter
 	{
 		if(e.getSource() instanceof OButton newStudentRegisterFormBut)
 		{
-			newStudentRegisterFormBut.setBackground(OgineColor.BELGE);
+			newStudentRegisterFormBut.setBackground(Colors.BELGE);
 	    	newStudentRegisterFormBut.setForeground(Color.BLACK);
 	    	newStudentRegisterFormBut.setBorderColor(Color.LIGHT_GRAY);
 		}
@@ -50,7 +50,7 @@ public class NewFormButAdapter extends MouseAdapter
 	{
 		if(e.getSource() instanceof OButton newStudentRegisterFormBut)
 		{
-			newStudentRegisterFormBut.setBackground(OgineColor.BELGE);
+			newStudentRegisterFormBut.setBackground(Colors.BELGE);
 	    	newStudentRegisterFormBut.setForeground(Color.BLACK);
 	    	newStudentRegisterFormBut.setBorderColor(Color.BLACK);
 		}

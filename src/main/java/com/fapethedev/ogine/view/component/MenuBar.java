@@ -15,7 +15,7 @@ import javax.swing.KeyStroke;
 import com.fapethedev.ogine.controller.menubar.MenuBarExitController;
 import com.fapethedev.ogine.controller.menubar.MenuBarLogoutController;
 import com.fapethedev.ogine.utilities.Iconifier;
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 
 /**
  * @author FATIGBA Abiola Pierre-Edy
@@ -170,8 +170,8 @@ public class MenuBar extends JMenuBar
 
 		exitIt.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.ALT_DOWN_MASK));
 		
-		logoutIt.setForeground(OgineColor.RED);
-		exitIt.setForeground(OgineColor.RED);
+		logoutIt.setForeground(Colors.RED);
+		exitIt.setForeground(Colors.RED);
 		menuListener();
 	}
 	

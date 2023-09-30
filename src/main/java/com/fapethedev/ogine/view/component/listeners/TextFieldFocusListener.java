@@ -12,7 +12,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 import com.fapethedev.ogine.view.component.label.Message;
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.border.UnderlineBorder;
 
 /**
@@ -36,18 +36,18 @@ public class TextFieldFocusListener implements FocusListener
 		{
 			JTextField field = (JTextField)e.getSource();
 			
-			field.setBorder(UnderlineBorder.createUnderlineBorder(OgineColor.BLUE, 2));
+			field.setBorder(UnderlineBorder.createUnderlineBorder(Colors.BLUE, 2));
 			
 			panel.setBorder(BorderFactory.createTitledBorder(
 					BorderFactory.createLineBorder(
-							OgineColor.DARK_BLUE,
+							Colors.DARK_BLUE,
 							2,
 							true),
 					Message.USERNAME_TITLE,
 					TitledBorder.DEFAULT_JUSTIFICATION,
 					TitledBorder.DEFAULT_POSITION,
 					new Font("Arial", Font.BOLD, 12),
-					OgineColor.BLUE));
+					Colors.BLUE));
 		}
 	}
 

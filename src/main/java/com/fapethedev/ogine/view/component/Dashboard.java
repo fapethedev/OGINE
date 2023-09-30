@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import com.fapethedev.ogine.view.component.label.Message;
 import com.fapethedev.ogine.utilities.Admin;
 import com.fapethedev.ogine.utilities.Iconifier;
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.border.UnderlineBorder;
 import com.fapethedev.ogine.view.component.button.DashOButton;
 import com.fapethedev.ogine.view.component.listeners.AdminLabelMouseAdapter;
@@ -208,7 +208,7 @@ public class Dashboard extends JPanel
 	private void butPBuilder() 
 	{
 		butPane.setBackground(forColor);
-		logoutBut.setBackground(OgineColor.RED);
+		logoutBut.setBackground(Colors.RED);
 		logoutBut.addMouseListener(new DashLogoutMouseAdapter());
 		logoutBut.setPreferredSize(new Dimension(DASH_WIDTH - 15, 50));
 		gbc3.gridx = 1;

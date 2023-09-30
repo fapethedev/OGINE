@@ -41,7 +41,7 @@ import com.fapethedev.ogine.controller.launcher.LauncherQuitController;
 import com.fapethedev.ogine.controller.launcher.LauncherResetController;
 import com.fapethedev.ogine.controller.launcher.LauncherShowController;
 import com.fapethedev.ogine.utilities.Iconifier;
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.utilities.Placeholder;
 import com.fapethedev.ogine.utilities.SwingUtils;
 import com.fapethedev.ogine.view.component.background.LauncherBackground;
@@ -425,7 +425,7 @@ public class LauncherPage extends JFrame
 				super.mouseEntered(e);
 				guestPane.setBackground(Color.WHITE);
 				guestPane.setBorderColor(Color.WHITE);
-				guestNameLabel.setForeground(OgineColor.BLUE);
+				guestNameLabel.setForeground(Colors.BLUE);
 			}
 
 			@Override
@@ -444,7 +444,7 @@ public class LauncherPage extends JFrame
 				super.mousePressed(e);
 				guestPane.setBackground(Color.LIGHT_GRAY);
 				guestPane.setBorderColor(Color.LIGHT_GRAY);
-				guestNameLabel.setForeground(OgineColor.DARK_BLUE);
+				guestNameLabel.setForeground(Colors.DARK_BLUE);
 			}
 
 			@Override
@@ -455,7 +455,7 @@ public class LauncherPage extends JFrame
 				{
 					guestPane.setBackground(Color.WHITE);
 					guestPane.setBorderColor(Color.WHITE);
-					guestNameLabel.setForeground(OgineColor.BLUE);
+					guestNameLabel.setForeground(Colors.BLUE);
 				}
 				else 
 				{

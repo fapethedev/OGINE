@@ -7,7 +7,7 @@ import javax.swing.event.CaretListener;
 
 import com.fapethedev.ogine.view.component.field.OTextField;
 import com.fapethedev.ogine.controller.FieldController;
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 
 public class NumberCaretListener implements CaretListener
 {
@@ -29,7 +29,7 @@ public class NumberCaretListener implements CaretListener
 					if(FieldController.isPhoneNumber(field.getText()))
 					{
 						
-						field.setForeground(OgineColor.DARK_GREEN);
+						field.setForeground(Colors.DARK_GREEN);
 						field.repaint();
 						field.revalidate();
 					}

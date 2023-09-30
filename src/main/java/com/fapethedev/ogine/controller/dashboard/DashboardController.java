@@ -1,7 +1,7 @@
 package com.fapethedev.ogine.controller.dashboard;
 
 import com.fapethedev.ogine.utilities.Iconifier;
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.label.Message;
 import com.fapethedev.ogine.view.launch.LauncherPage;
 import com.fapethedev.ogine.view.menu.MainMenu;
@@ -41,7 +41,7 @@ public class DashboardController
         	owner.getToolBar().getShowRButtonIcon().setForeground(Color.BLACK);
         	owner.getToolBar().getShowRButtonIcon().setBackground(Color.WHITE);
         	owner.getToolBar().getShowIButtonIcon().setForeground(Color.WHITE);
-        	owner.getToolBar().getShowIButtonIcon().setBackground(OgineColor.BLUE);
+        	owner.getToolBar().getShowIButtonIcon().setBackground(Colors.BLUE);
         	owner.getToolBar().getShowLButtonIcon().setForeground(Color.BLACK);
         	owner.getToolBar().getShowLButtonIcon().setBackground(Color.WHITE);
         	owner.getToolBar().getShowPButtonIcon().setForeground(Color.BLACK);
@@ -57,7 +57,7 @@ public class DashboardController
 			owner.getToolBar().getShowRButtonIcon().setForeground(Color.BLACK);
 			owner.getToolBar().getShowRButtonIcon().setBackground(Color.WHITE);
 			owner.getToolBar().getShowLButtonIcon().setForeground(Color.WHITE);
-			owner.getToolBar().getShowLButtonIcon().setBackground(OgineColor.BLUE);
+			owner.getToolBar().getShowLButtonIcon().setBackground(Colors.BLUE);
 			a(owner);
 		});
 	}
@@ -73,7 +73,7 @@ public class DashboardController
 
 			owner.card.show(owner.getCenterpane(), owner.getList(1));
 			owner.getToolBar().getShowRButtonIcon().setForeground(Color.WHITE);
-			owner.getToolBar().getShowRButtonIcon().setBackground(OgineColor.BLUE);
+			owner.getToolBar().getShowRButtonIcon().setBackground(Colors.BLUE);
 			owner.getToolBar().getShowLButtonIcon().setForeground(Color.BLACK);
 			owner.getToolBar().getShowLButtonIcon().setBackground(Color.WHITE);
 			a(owner);
@@ -85,7 +85,7 @@ public class DashboardController
 			owner.card.show(owner.getCenterpane(), owner.getList(5));
 			b(owner);
 			owner.getToolBar().getShowPButtonIcon().setForeground(Color.WHITE);
-			owner.getToolBar().getShowPButtonIcon().setBackground(OgineColor.BLUE);
+			owner.getToolBar().getShowPButtonIcon().setBackground(Colors.BLUE);
 			owner.getToolBar().getShowOButtonIcon().setForeground(Color.BLACK);
 			owner.getToolBar().getShowOButtonIcon().setBackground(Color.WHITE);
 		});
@@ -98,7 +98,7 @@ public class DashboardController
 			owner.getToolBar().getShowPButtonIcon().setForeground(Color.BLACK);
 			owner.getToolBar().getShowPButtonIcon().setBackground(Color.WHITE);
 			owner.getToolBar().getShowOButtonIcon().setForeground(Color.WHITE);
-			owner.getToolBar().getShowOButtonIcon().setBackground(OgineColor.BLUE);
+			owner.getToolBar().getShowOButtonIcon().setBackground(Colors.BLUE);
 		});
 	}
 

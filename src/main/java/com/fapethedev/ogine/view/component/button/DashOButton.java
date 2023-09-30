@@ -3,7 +3,7 @@ package com.fapethedev.ogine.view.component.button;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.listeners.DashOBMouseAdapter;
 
 public class DashOButton extends OButton
@@ -25,8 +25,8 @@ public class DashOButton extends OButton
 		super.paintComponent(g);
 		if(this.isFocusOwner())
 		{
-			this.setForeground(OgineColor.BELGE);
-			this.setBorderColor(OgineColor.BELGE);
+			this.setForeground(Colors.BELGE);
+			this.setBorderColor(Colors.BELGE);
 			this.revalidate();
             this.repaint();
 		}

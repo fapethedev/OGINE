@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.fapethedev.ogine.utilities.Iconifier;
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.background.Background;
 import com.fapethedev.ogine.view.component.label.Message;
 import com.fapethedev.ogine.view.component.button.OButton;
@@ -112,10 +112,10 @@ public class OMessageDialog extends JDialog
 	
 	private void custumButtomUI()
 	{
-		yesOkButton.setBackground(OgineColor.DARK_GREEN);
-		noCancelButton.setBackground(OgineColor.DARK_RED);
-		yesOkButton.setBorderColor(OgineColor.DARK_GREEN);
-		noCancelButton.setBorderColor(OgineColor.DARK_RED);
+		yesOkButton.setBackground(Colors.DARK_GREEN);
+		noCancelButton.setBackground(Colors.DARK_RED);
+		yesOkButton.setBorderColor(Colors.DARK_GREEN);
+		noCancelButton.setBorderColor(Colors.DARK_RED);
 		yesOkButton.setForeground(Color.WHITE);
 		noCancelButton.setForeground(Color.WHITE);
 		
