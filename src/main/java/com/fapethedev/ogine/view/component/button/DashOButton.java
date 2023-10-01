@@ -25,8 +25,8 @@ public class DashOButton extends OButton
 		super.paintComponent(g);
 		if(this.isFocusOwner())
 		{
-			this.setForeground(Colors.BELGE);
-			this.setBorderColor(Colors.BELGE);
+			this.setForeground(Colors.getInstance().BELGE);
+			this.setBorderColor(Colors.getInstance().BELGE);
 			this.revalidate();
             this.repaint();
 		}

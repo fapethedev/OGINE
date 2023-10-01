@@ -24,6 +24,7 @@ import com.fapethedev.ogine.view.component.button.OButton;
  */
 public class OMessageDialog extends JDialog
 {
+	private final Colors colors = Colors.getInstance();
 	// option
     public static final int YES_NO_OPTION = 0;
     public static final int OK_CANCEL_OPTION = 1;
@@ -112,10 +113,10 @@ public class OMessageDialog extends JDialog
 	
 	private void custumButtomUI()
 	{
-		yesOkButton.setBackground(Colors.DARK_GREEN);
-		noCancelButton.setBackground(Colors.DARK_RED);
-		yesOkButton.setBorderColor(Colors.DARK_GREEN);
-		noCancelButton.setBorderColor(Colors.DARK_RED);
+		yesOkButton.setBackground(colors.DARK_GREEN);
+		noCancelButton.setBackground(colors.DARK_RED);
+		yesOkButton.setBorderColor(colors.DARK_GREEN);
+		noCancelButton.setBorderColor(colors.DARK_RED);
 		yesOkButton.setForeground(Color.WHITE);
 		noCancelButton.setForeground(Color.WHITE);
 		

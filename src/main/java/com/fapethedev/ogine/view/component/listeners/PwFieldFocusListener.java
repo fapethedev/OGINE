@@ -36,18 +36,18 @@ public class PwFieldFocusListener implements FocusListener
 		{
 			JPasswordField field = (JPasswordField)e.getSource();
 			
-			field.setBorder(UnderlineBorder.createUnderlineBorder(Colors.BLUE, 2));
+			field.setBorder(UnderlineBorder.createUnderlineBorder(Colors.getInstance().BLUE, 2));
 			
 			panel.setBorder(BorderFactory.createTitledBorder(
 					BorderFactory.createLineBorder(
-							Colors.DARK_BLUE,
+							Colors.getInstance().DARK_BLUE,
 							2,
 							true),
 					Message.PASSWORD_TITLE,
 					TitledBorder.DEFAULT_JUSTIFICATION,
 					TitledBorder.DEFAULT_POSITION,
 					new Font("Arial", Font.BOLD, 12),
-					Colors.BLUE));
+					Colors.getInstance().BLUE));
 		}
 	}
 

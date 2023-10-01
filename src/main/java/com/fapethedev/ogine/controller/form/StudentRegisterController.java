@@ -630,7 +630,7 @@ public class StudentRegisterController
                                     OTextField fatnF, OTextField fatfF, OTextField mothF, OTextField motnF,
                                     OTextField motfF, OTextField tutoF, OTextField tutnF, OTextField tutfF,
                                     OTextField reliF, OTextField phonF, OTextField addrF) {
-		pp.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Colors.DARK_BLUE, Color.LIGHT_GRAY));
+		pp.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Colors.getInstance().DARK_BLUE, Color.LIGHT_GRAY));
 		lastF.setDefaultBorderColor(Color.BLACK);
 		firsF.setDefaultBorderColor(Color.BLACK);
 		birtF.setBorder(new RoundedBorder(Color.BLACK));

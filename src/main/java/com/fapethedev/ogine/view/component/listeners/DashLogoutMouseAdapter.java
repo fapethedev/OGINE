@@ -31,7 +31,7 @@ public class DashLogoutMouseAdapter extends MouseAdapter
 		{
 			button.setFont(button.getFont().deriveFont(Font.BOLD));
 			button.setForeground(Color.WHITE);
-			button.setBackground(Colors.RED);
+			button.setBackground(Colors.getInstance().RED);
 		}
 	}
 
@@ -42,7 +42,7 @@ public class DashLogoutMouseAdapter extends MouseAdapter
 		super.mouseEntered(e);
 		if(e.getSource() instanceof DashOButton button)
 		{
-			button.setBackground(Colors.LIGHT_RED);
+			button.setBackground(Colors.getInstance().LIGHT_RED);
 		}
 	}
 
@@ -52,7 +52,7 @@ public class DashLogoutMouseAdapter extends MouseAdapter
 		super.mouseExited(e);
 		if(e.getSource() instanceof DashOButton button)
 		{
-			button.setBackground(Colors.RED);
+			button.setBackground(Colors.getInstance().RED);
 		}
 	}
 }

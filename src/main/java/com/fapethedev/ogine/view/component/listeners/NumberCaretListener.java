@@ -29,7 +29,7 @@ public class NumberCaretListener implements CaretListener
 					if(FieldController.isPhoneNumber(field.getText()))
 					{
 						
-						field.setForeground(Colors.DARK_GREEN);
+						field.setForeground(Colors.getInstance().DARK_GREEN);
 						field.repaint();
 						field.revalidate();
 					}

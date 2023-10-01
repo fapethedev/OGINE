@@ -87,11 +87,11 @@ public class BoldTableCellRenderer extends DefaultTableCellRenderer
             Border border = null;
             if(isSelected) 
             {
-                border = BorderFactory.createLineBorder(Colors.BELGE, 1);
+                border = BorderFactory.createLineBorder(Colors.getInstance().BELGE, 1);
             }
             if(border == null) 
             {
-                border = BorderFactory.createLineBorder(Colors.BELGE, 1);
+                border = BorderFactory.createLineBorder(Colors.getInstance().BELGE, 1);
             }
             setBorder(border);
 

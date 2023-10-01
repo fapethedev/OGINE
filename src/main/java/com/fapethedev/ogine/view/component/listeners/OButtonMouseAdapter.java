@@ -10,6 +10,7 @@ import com.fapethedev.ogine.view.component.button.OButton;
 
 public class OButtonMouseAdapter extends MouseAdapter 
 {
+	private final Colors colors = Colors.getInstance();
 	
 	@Override
 	public void mousePressed(MouseEvent e)
@@ -18,9 +19,9 @@ public class OButtonMouseAdapter extends MouseAdapter
 		if(e.getSource() instanceof OButton button)
 		{
 			button.setFont(button.getFont().deriveFont(Font.UNDERLINE));
-			button.setForeground(Colors.BELGE);
-			button.setBackground(Colors.LIGHT_BLUE);
-			button.setBorderColor(Colors.LIGHT_BLUE);
+			button.setForeground(colors.BELGE);
+			button.setBackground(colors.LIGHT_BLUE);
+			button.setBorderColor(colors.LIGHT_BLUE);
 		}
 	}
 

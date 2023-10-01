@@ -59,7 +59,7 @@ import com.fapethedev.ogine.view.component.panel.OPanel;
 public class LauncherPage extends JFrame
 {
 	private static LauncherPage singleton;
-	
+
 	private final int WIDTH  = SwingUtils.getMainWidth();
 	private final int HEIGTH = SwingUtils.getHeight();
 	
@@ -425,7 +425,7 @@ public class LauncherPage extends JFrame
 				super.mouseEntered(e);
 				guestPane.setBackground(Color.WHITE);
 				guestPane.setBorderColor(Color.WHITE);
-				guestNameLabel.setForeground(Colors.BLUE);
+				guestNameLabel.setForeground(Colors.getInstance().BLUE);
 			}
 
 			@Override
@@ -444,7 +444,7 @@ public class LauncherPage extends JFrame
 				super.mousePressed(e);
 				guestPane.setBackground(Color.LIGHT_GRAY);
 				guestPane.setBorderColor(Color.LIGHT_GRAY);
-				guestNameLabel.setForeground(Colors.DARK_BLUE);
+				guestNameLabel.setForeground(Colors.getInstance().DARK_BLUE);
 			}
 
 			@Override
@@ -455,7 +455,7 @@ public class LauncherPage extends JFrame
 				{
 					guestPane.setBackground(Color.WHITE);
 					guestPane.setBorderColor(Color.WHITE);
-					guestNameLabel.setForeground(Colors.BLUE);
+					guestNameLabel.setForeground(Colors.getInstance().BLUE);
 				}
 				else 
 				{

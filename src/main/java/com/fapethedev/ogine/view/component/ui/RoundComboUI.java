@@ -2,7 +2,7 @@ package com.fapethedev.ogine.view.component.ui;
 
 import com.fapethedev.ogine.view.component.field.OTextField;
 import com.formdev.flatlaf.ui.FlatComboBoxUI;
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.border.RoundedBorder;
 import com.fapethedev.ogine.view.component.button.ArrowButton;
 
@@ -33,7 +33,7 @@ public class RoundComboUI extends FlatComboBoxUI {
                 arrowType,
                 Color.LIGHT_GRAY,
                 null,
-                OgineColor.BLUE,
+                Colors.getInstance().BLUE,
                 Color.WHITE,
                 Color.BLACK,
                 Color.WHITE);
@@ -58,8 +58,7 @@ public class RoundComboUI extends FlatComboBoxUI {
             field.setColumns(editorColumns);
             field.setFont(field.getFont().deriveFont(Font.BOLD));
         }
-        else System.out.println("eeeeeeeeee");
-    }
+     }
 
     @Override
     protected ComboBoxEditor createEditor() {
@@ -87,7 +86,7 @@ public class RoundComboUI extends FlatComboBoxUI {
             JComponent component = (JComponent) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             component.setBorder(new EmptyBorder(5, 5, 5, 5));
             component.setForeground(isSelected || cellHasFocus ?
-                    OgineColor.BLUE :
+                    Colors.getInstance().BLUE :
                     Color.BLACK);
             component.setOpaque(false);
 
@@ -99,8 +98,9 @@ public class RoundComboUI extends FlatComboBoxUI {
 
         public RoundedComboPopup(JComboBox<Object> combo) {
             super(combo);
-            int arc = 15;
-            setBorder(new RoundedBorder(arc));
+            RoundedBorder border = new RoundedBorder();
+            border.setBorderBackground(Color.WHITE);
+            setBorder(border);
             list.addMouseMotionListener(new MouseMotionAdapter() {
                 @Override
                 public void mouseMoved(MouseEvent e) {
