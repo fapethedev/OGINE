@@ -18,7 +18,7 @@ public class DashLogoutMouseAdapter extends MouseAdapter
 		{
 			button.setFont(button.getFont().deriveFont(Font.UNDERLINE));
 			button.setForeground(Color.LIGHT_GRAY);
-			button.setBackground(Colors.DARK_RED);
+			button.setBackground(Colors.getInstance().DARK_RED);
 		}
 	}
 	
