@@ -1,6 +1,6 @@
 package com.fapethedev.ogine.utilities;
 
-import com.fapethedev.ogine.controller.form.StudentRegisterController;
+import com.fapethedev.ogine.controller.form.StudentController;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -22,7 +22,7 @@ public class PicRedrawer
 	 */
 	public static String redrawerPath(String lastName, String firstName)
 	{
-		String inputPath = StudentRegisterController.getInputfile().getAbsolutePath();
+		String inputPath = StudentController.getInputfile().getAbsolutePath();
         String imageFullpath = null;
         try
         {

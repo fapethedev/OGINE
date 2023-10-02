@@ -20,7 +20,7 @@ import java.util.Locale;
 /**
  * @author FATIGBA Abiola Pierre-Edy
  */
-public class StudentRegisterController
+public class StudentController
 {
 	private static File inputfile;
 
@@ -344,7 +344,7 @@ public class StudentRegisterController
 				);
 		if(choice == JOptionPane.YES_OPTION)
 		{
-			StudentRegisterController.resetForm(owner);
+			StudentController.resetForm(owner);
 			owner.getStudentSliderPane().show(0);
 		}
 	}
@@ -355,7 +355,7 @@ public class StudentRegisterController
 	 *
 	 * @param owner a StudentRegisterForm object
 	 */
-	public synchronized static void confirmUpdate(MainMenu owner)
+	public synchronized static void updateStudent(MainMenu owner)
 	{
         var pan = owner.getCenterpane();
         var pp = owner.getStudentClientprofile();
@@ -649,8 +649,8 @@ public class StudentRegisterController
 		reliF.setDefaultBorderColor(Color.BLACK);
 		phonF.setDefaultBorderColor(Color.BLACK);
 		addrF.setDefaultBorderColor(Color.BLACK);
-		StudentRegisterController.resetForm(owner);
-		RegisterInfoController.inform(owner);
+		StudentController.resetForm(owner);
+		RegisterController.setData(owner);
 	}
 
 	public static File getInputfile()
