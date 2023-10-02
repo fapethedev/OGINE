@@ -11,13 +11,13 @@ public class MainMenuBackground extends Background
 	{
 		super();
 		this.setLayout(null);
-		image = new ImageIcon(getClass().getResource("/mainmenuwallpaper.jpg"));
+		image = new ImageIcon(getClass().getResource("/images/mainmenuwallpaper.jpg"));
 	}
 
 	public MainMenuBackground(LayoutManager lm)
 	{
 		super(lm);
 		this.lm = lm;
-		image = new ImageIcon(getClass().getResource("/mainmenuwallpaper.jpg"));
+		image = new ImageIcon(getClass().getResource("/images/mainmenuwallpaper.jpg"));
 	}
 }

@@ -14,13 +14,13 @@ public class DashBackground extends Background
 	{
 		super();
 		this.setLayout(null);
-		image = new ImageIcon(getClass().getResource("/dashwallpaper.jpg"));
+		image = new ImageIcon(getClass().getResource("/images/dashwallpaper.jpg"));
 	}
 	
 	public DashBackground(LayoutManager lm)
 	{
 		super(lm);
 		this.lm = lm;
-		image = new ImageIcon(getClass().getResource("/dashwallpaper.jpg"));
+		image = new ImageIcon(getClass().getResource("/images/dashwallpaper.jpg"));
 	}
 }

@@ -11,6 +11,6 @@ public class LauncherBackground extends Background
 	{
 		super();
 		this.setLayout(null);
-		image = new ImageIcon(getClass().getResource("/startwallpaper.jpg"));
+		image = new ImageIcon(getClass().getResource("/images/startwallpaper.jpg"));
 	}
 }
