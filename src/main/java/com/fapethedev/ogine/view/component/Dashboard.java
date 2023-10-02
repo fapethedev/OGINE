@@ -208,7 +208,7 @@ public class Dashboard extends JPanel
 	private void butPBuilder() 
 	{
 		butPane.setBackground(forColor);
-		logoutBut.setBackground(Colors.RED);
+		logoutBut.setBackground(Colors.getInstance().RED);
 		logoutBut.addMouseListener(new DashLogoutMouseAdapter());
 		logoutBut.setPreferredSize(new Dimension(DASH_WIDTH - 15, 50));
 		gbc3.gridx = 1;

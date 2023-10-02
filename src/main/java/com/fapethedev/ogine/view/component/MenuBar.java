@@ -170,8 +170,8 @@ public class MenuBar extends JMenuBar
 
 		exitIt.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.ALT_DOWN_MASK));
 		
-		logoutIt.setForeground(Colors.RED);
-		exitIt.setForeground(Colors.RED);
+		logoutIt.setForeground(Colors.getInstance().RED);
+		exitIt.setForeground(Colors.getInstance().RED);
 		menuListener();
 	}
 	

@@ -1,5 +1,7 @@
 package com.fapethedev.ogine.view.component.listeners;
 
+import com.fapethedev.ogine.utilities.Colors;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -35,7 +37,7 @@ public class ExitButtonMouseAdapter extends MouseAdapter
 		super.mousePressed(e);
 		if(e.getSource() instanceof JButton button)
 		{
-			button.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+			button.setBorder(BorderFactory.createLineBorder(Colors.getInstance().LIGHT_BLUE, 2));
 		}
 	}
 
