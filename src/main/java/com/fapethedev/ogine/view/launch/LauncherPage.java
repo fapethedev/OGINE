@@ -25,14 +25,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
@@ -46,6 +39,7 @@ import com.fapethedev.ogine.utilities.Placeholder;
 import com.fapethedev.ogine.utilities.SwingUtils;
 import com.fapethedev.ogine.view.component.background.LauncherBackground;
 import com.fapethedev.ogine.view.component.border.UnderlineBorder;
+import com.fapethedev.ogine.view.component.button.RoundedButton;
 import com.fapethedev.ogine.view.component.label.Message;
 import com.fapethedev.ogine.view.component.listeners.ExitButtonMouseAdapter;
 import com.fapethedev.ogine.view.component.listeners.PwFieldFocusListener;
@@ -88,11 +82,11 @@ public class LauncherPage extends JFrame
 	private JTextField userIDField;
 	private JPasswordField userPasswordField;
 	
-	private static JButton loginButton;
-	private static JButton resetButton;
+	private static RoundedButton loginButton;
+	private static RoundedButton resetButton;
 	private static JButton showButton;
-	private JButton guestLoginButton;
-	private JButton exitButton;
+	private RoundedButton guestLoginButton;
+	private RoundedButton exitButton;
 
 	private LauncherPage(boolean splashEnable)
 	{
@@ -185,11 +179,11 @@ public class LauncherPage extends JFrame
 		userIDField = new JTextField(2);
 		userPasswordField = new JPasswordField(2);
 		
-		loginButton = new JButton("Connexion", Iconifier.loginIcon);
-		guestLoginButton = new JButton("Se Connecter en tant qu'invité".toUpperCase(), Iconifier.loginIcon);
-		resetButton = new JButton("Reset", Iconifier.resetIcon);
+		loginButton = new RoundedButton("Connexion", Iconifier.loginIcon);
+		guestLoginButton = new RoundedButton("Se Connecter en tant qu'invité".toUpperCase(), Iconifier.loginIcon);
+		resetButton = new RoundedButton("Reset", Iconifier.resetIcon);
 		showButton = new JButton(Iconifier.showIcon);
-		exitButton = new JButton(Iconifier.exitIcon);
+		exitButton = new RoundedButton(Iconifier.exitIcon);
 	}
 	
 	private void buildContentPane()
@@ -384,7 +378,6 @@ public class LauncherPage extends JFrame
 		loginButton.setPreferredSize(new Dimension(180, 30));
 		loginButton.setToolTipText(Message.LOGIN_TAG);
 		loginButton.setFocusable(true);
-		loginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		loginButton.setFont(loginButton.getFont().deriveFont(Font.BOLD));
 		getLoginButton().addActionListener(this::onLoginClick);
 		
@@ -392,7 +385,6 @@ public class LauncherPage extends JFrame
 		guestLoginButton.setVisible(false);
 		guestLoginButton.setToolTipText(Message.LOGIN_TAG);
 		guestLoginButton.setFocusable(true);
-		guestLoginButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		guestLoginButton.setFont(guestLoginButton.getFont().deriveFont(Font.BOLD));
 		guestLoginButton.setLocation(new Point((WIDTH / 2) - 125, (HEIGTH / 2) + 80));
 		guestLoginButton.addActionListener(this::onGuestLoginClick);
@@ -401,7 +393,6 @@ public class LauncherPage extends JFrame
 		resetButton.setPreferredSize(new Dimension(100, 30));
 		resetButton.setToolTipText(Message.CANCEL_TAG);
 		resetButton.setFocusable(true);
-		resetButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		resetButton.setFont(resetButton.getFont().deriveFont(Font.BOLD));
 		getResetButton().addActionListener(this::onResetClick);
 		
@@ -411,7 +402,6 @@ public class LauncherPage extends JFrame
 		exitButton.setToolTipText(Message.EXIT_TAG);
 		exitButton.setFocusable(true);
 		exitButton.setFocusPainted(true);
-		exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		getExitButton().addActionListener(this::onExitClick);
 		getExitButton().addMouseListener(new ExitButtonMouseAdapter());
 	}
@@ -524,22 +514,22 @@ public class LauncherPage extends JFrame
 		LauncherLoginController.loginAsGuest(this);
 	}
 	
-	public static JButton getLoginButton() 
+	public static RoundedButton getLoginButton() 
 	{
 		return loginButton;
 	}
 
-	public static JButton getResetButton() 
+	public static RoundedButton getResetButton() 
 	{
 		return resetButton;
 	}
 
-	public static JButton getShowButton() 
+	public static JButton getShowButton()
 	{
 		return showButton;
 	}
 
-	public JButton getExitButton() 
+	public RoundedButton getExitButton() 
 	{
 		return exitButton;
 	}
