@@ -1,6 +1,6 @@
 package com.fapethedev.ogine.view.component.border;
 
-import com.fapethedev.ogine.utilities.OgineColor;
+import com.fapethedev.ogine.utilities.Colors;
 
 import javax.swing.*;
 import javax.swing.border.AbstractBorder;
@@ -14,6 +14,10 @@ import java.awt.geom.RoundRectangle2D;
 public class RoundedBorder extends AbstractBorder {
     private int arc = 15;
     private Color borderColor = Color.BLACK;
+    private Color borderBackground = new Color(0, 0, 0, 0);
+
+    public RoundedBorder() {
+    }
 
     public RoundedBorder(int arc) {
         this.arc = arc;
@@ -32,7 +36,7 @@ public class RoundedBorder extends AbstractBorder {
     public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
         Graphics2D g2 = (Graphics2D) g.create();
         g.translate(x, y);
-        g2.setColor(c.getBackground());
+        g2.setColor(borderBackground);
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Dessine un rectangle arrondi avec des coins arrondis
@@ -41,7 +45,7 @@ public class RoundedBorder extends AbstractBorder {
         roundRectangle = new RoundRectangle2D.Double(x, y, width - 1, height - 1, arc, arc);
         g2.setColor(c instanceof JComboBox<?> box ?
                 box.getEditor().getEditorComponent().hasFocus() ?
-                        OgineColor.BLUE :
+                        Colors.getInstance().BLUE :
                         borderColor == null ? Color.BLACK :
                                 borderColor :
                 borderColor == null ? Color.BLACK :
@@ -60,5 +64,13 @@ public class RoundedBorder extends AbstractBorder {
     public Insets getBorderInsets(Component c, Insets insets) {
         insets.left = insets.right = insets.top = insets.bottom = 1;
         return insets;
+    }
+
+    public void setBorderColor(Color borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    public void setBorderBackground(Color borderBackground) {
+        this.borderBackground = borderBackground;
     }
 }
