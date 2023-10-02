@@ -38,7 +38,7 @@ public class InstitutManager
 		return singleton;
 	}
 	
-	public ArrayList<Institut> getInstitutList() throws InstitutManagerException
+	public ArrayList<Institut> getAllInstituts() throws InstitutManagerException
 	{
 		ArrayList<Institut> institutFromDB = new ArrayList<>();
 		
