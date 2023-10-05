@@ -141,7 +141,7 @@
             <version>1.7</version>
         </dependency>
 
-        <!-- -->
+        <!--flatlaf dependecies -->
         <dependency>
             <groupId>com.formdev</groupId>
             <artifactId>flatlaf</artifactId>
@@ -160,11 +160,47 @@
             <version>3.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.formdev/flatlaf-extras -->
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-extras</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.formdev/flatlaf-fonts-roboto -->
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf-fonts-roboto</artifactId>
+            <version>2.137</version>
+        </dependency>
+
         <dependency>
             <groupId>com.weblookandfeel</groupId>
             <artifactId>weblaf-ui</artifactId>
             <version>1.2.13</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/uk.co.caprica/vlcj -->
+        <dependency>
+            <groupId>uk.co.caprica</groupId>
+            <artifactId>vlcj</artifactId>
+            <version>4.8.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.miglayout/miglayout-swing -->
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout-swing</artifactId>
+            <version>11.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>5.13.0</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.jetbrains</groupId>

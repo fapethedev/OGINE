@@ -1,25 +1,13 @@
 package com.fapethedev.ogine.view.component.background;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.LayoutManager;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
-import org.jdesktop.swingx.graphics.ShadowRenderer;
-
 import com.twelvemonkeys.image.ImageUtil;
-
 import lombok.Getter;
 import lombok.Setter;
+import org.jdesktop.swingx.graphics.ShadowRenderer;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * @author FATIGBA Abiola Pierre-Edy
@@ -36,6 +24,7 @@ public class Background extends JPanel
 	public Background()
 	{
 		super();
+		setOpaque(false);
 		SwingUtilities.invokeLater(() ->{
 			createImage();
 			repaint();
@@ -65,8 +54,8 @@ public class Background extends JPanel
 	
 	private void createImage()
 	{
-		if(image != null)
-		{
+//		if(image != null)
+//		{
 			int width = getWidth();
 			int heigth = getHeight();
 			if(width > 0 && heigth > 0)
@@ -74,16 +63,16 @@ public class Background extends JPanel
 				imgBG = new BufferedImage(width, heigth, BufferedImage.TYPE_INT_ARGB);
 				Graphics2D g2d = imgBG.createGraphics();
 				g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR); 
-				Rectangle rectangle = getAutoSize(image);
-				g2d.drawImage(
-						image.getImage(), rectangle.x, rectangle.y, rectangle.width, rectangle.height, null);
+//				Rectangle rectangle = getAutoSize(image);
+//				g2d.drawImage(
+//						image.getImage(), rectangle.x, rectangle.y, rectangle.width, rectangle.height, null);
 				if(blurPanel != null)
 				{
 					createBlurImage(g2d);
 				}
 				g2d.dispose();
 			}
-		}
+//		}
 	}
 	
 	private void createBlurImage(Graphics2D g2d)

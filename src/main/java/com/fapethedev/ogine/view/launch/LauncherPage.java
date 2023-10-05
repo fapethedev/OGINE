@@ -1,51 +1,36 @@
 package com.fapethedev.ogine.view.launch;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
+import com.fapethedev.ogine.controller.launcher.LauncherLoginController;
+import com.fapethedev.ogine.controller.launcher.LauncherQuitController;
+import com.fapethedev.ogine.controller.launcher.LauncherResetController;
+import com.fapethedev.ogine.controller.launcher.LauncherShowController;
+import com.fapethedev.ogine.utilities.Colors;
+import com.fapethedev.ogine.utilities.Iconifier;
+import com.fapethedev.ogine.utilities.Placeholder;
+import com.fapethedev.ogine.utilities.SwingUtils;
+import com.fapethedev.ogine.view.component.border.UnderlineBorder;
+import com.fapethedev.ogine.view.component.button.RoundedButton;
+import com.fapethedev.ogine.view.component.label.Message;
+import com.fapethedev.ogine.view.component.listeners.PwFieldFocusListener;
+import com.fapethedev.ogine.view.component.listeners.ShowKeyListener;
+import com.fapethedev.ogine.view.component.listeners.TextFieldFocusListener;
+import com.fapethedev.ogine.view.component.listeners.adapter.ExitButtonMouseAdapter;
+import com.fapethedev.ogine.view.component.listeners.adapter.LauncherKeyAdapter;
+import com.fapethedev.ogine.view.component.listeners.adapter.LauncherWindowAdapter;
+import com.fapethedev.ogine.view.component.panel.LauncherVideoPanel;
+import com.fapethedev.ogine.view.component.panel.OPanel;
+import com.fapethedev.ogine.view.component.panel.VideoOverlay;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-
-import com.fapethedev.ogine.controller.launcher.LauncherLoginController;
-import com.fapethedev.ogine.controller.launcher.LauncherQuitController;
-import com.fapethedev.ogine.controller.launcher.LauncherResetController;
-import com.fapethedev.ogine.controller.launcher.LauncherShowController;
-import com.fapethedev.ogine.utilities.Iconifier;
-import com.fapethedev.ogine.utilities.Colors;
-import com.fapethedev.ogine.utilities.Placeholder;
-import com.fapethedev.ogine.utilities.SwingUtils;
-import com.fapethedev.ogine.view.component.background.LauncherBackground;
-import com.fapethedev.ogine.view.component.border.UnderlineBorder;
-import com.fapethedev.ogine.view.component.button.RoundedButton;
-import com.fapethedev.ogine.view.component.label.Message;
-import com.fapethedev.ogine.view.component.listeners.ExitButtonMouseAdapter;
-import com.fapethedev.ogine.view.component.listeners.PwFieldFocusListener;
-import com.fapethedev.ogine.view.component.listeners.ShowKeyListener;
-import com.fapethedev.ogine.view.component.listeners.TextFieldFocusListener;
-import com.fapethedev.ogine.view.component.panel.OPanel;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * @author FATIGBA Abiola Pierre-Edy
@@ -65,7 +50,8 @@ public class LauncherPage extends JFrame
 	
 	private GridBagConstraints gbc;
 	
-	private LauncherBackground background;
+	private LauncherVideoPanel videoPanel;
+	private VideoOverlay videoOverlay;
 	
 	private BufferedImage appImage;
 	
@@ -92,26 +78,10 @@ public class LauncherPage extends JFrame
 	{
 		super();
 		this.setUndecorated(true);
-		this.addKeyListener(new KeyAdapter()
-		{
-			@Override
-			public void keyPressed(KeyEvent e)
-			{
-				super.keyPressed(e);
-				if(e.getKeyCode() == (KeyEvent.VK_F4))
-				{
-					LauncherQuitController.quit(LauncherPage.this);
-				}
-			}
-		});
-		this.addWindowFocusListener(new WindowAdapter()
-		{
-			@Override
-			public void windowGainedFocus(WindowEvent e) 
-			{
-				LauncherPage.this.requestFocusInWindow();
-			}
-		});
+		this.addKeyListener(new LauncherKeyAdapter());
+		this.addWindowFocusListener(new LauncherWindowAdapter());
+        this.addWindowListener(new LauncherWindowAdapter());
+		System.err.println(splashEnable);
 		
 		if(splashEnable)
 		{	
@@ -148,7 +118,7 @@ public class LauncherPage extends JFrame
 	{
 		try 
 		{
-			appImage = ImageIO.read(new File(getClass().getResource("/icon.png").toURI()));
+			appImage = ImageIO.read(new File(getClass().getResource("/icons/icon.png").toURI()));
 		} 
 		catch(IOException | URISyntaxException e) 
 		{
@@ -163,7 +133,8 @@ public class LauncherPage extends JFrame
 		
 		gbc = new GridBagConstraints();
 		
-		background = new LauncherBackground();
+		videoPanel = new LauncherVideoPanel();
+        videoOverlay = new VideoOverlay(this);
 		
 		pageTitle = new JLabel(Message.CON_TITLE_MSG);
 	
@@ -184,6 +155,7 @@ public class LauncherPage extends JFrame
 		resetButton = new RoundedButton("Reset", Iconifier.resetIcon);
 		showButton = new JButton(Iconifier.showIcon);
 		exitButton = new RoundedButton(Iconifier.exitIcon);
+
 	}
 	
 	private void buildContentPane()
@@ -196,13 +168,13 @@ public class LauncherPage extends JFrame
 		this.setAlwaysOnTop(false);
 		this.setIconImage(appImage);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(new GridLayout(2, 1, 10, 10));
-		this.setContentPane(background);
-		this.getContentPane().add(mainPane);
+		this.setLayout(new BorderLayout());
+		this.setContentPane(videoPanel);
+		videoOverlay.getContentBackground().add(mainPane);
 		JPanel bp = new JPanel();
 		bp.setLocation((WIDTH / 2) - 240, 20);
 		bp.setSize(new Dimension(500, 600));
-		background.setBlurPanel(bp);
+		videoOverlay.getContentBackground().setBlurPanel(bp);
 		mainPane.add(fieldPane1);
 		mainPane.add(fieldPane2);
 		
@@ -272,14 +244,14 @@ public class LauncherPage extends JFrame
 		gbc.weightx = GridBagConstraints.BASELINE_LEADING;
 		gbc.insets = new Insets(1, 1, 1, 1);
 		guestPane.add(guestNameLabel, gbc);
-		
-		this.getContentPane().add(pageTitle);
-		this.getContentPane().add(userProfileLabel);
-		this.getContentPane().add(butPane);
-		this.getContentPane().add(exitButton);
-		this.getContentPane().add(guestPane);
-		this.getContentPane().add(guestLoginButton);
-		this.getContentPane().setBackground(Color.getHSBColor(83.7f, 83.7f, 83.7f));
+
+		videoOverlay.getContentBackground().add(pageTitle);
+		videoOverlay.getContentBackground().add(userProfileLabel);
+		videoOverlay.getContentBackground().add(butPane);
+		videoOverlay.getContentBackground().add(exitButton);
+		videoOverlay.getContentBackground().add(guestPane);
+		videoOverlay.getContentBackground().add(guestLoginButton);
+//		this.getContentPane().setBackground(Color.getHSBColor(83.7f, 83.7f, 83.7f));
 	}
 	
 	private void buildPane()
@@ -423,7 +395,7 @@ public class LauncherPage extends JFrame
 				super.mouseExited(e);
 				guestPane.setBackground(new Color(0, true));
 				guestPane.setBorderColor(new Color(0, true));
-				guestNameLabel.setForeground(Color.WHITE);
+				guestNameLabel.setForeground(Color.BLACK);
 			}
 			
 		});
@@ -543,4 +515,13 @@ public class LauncherPage extends JFrame
 	{
 		return userPasswordField;
 	}
+
+	public LauncherVideoPanel getVideoBackground()
+	{
+		return videoPanel;
+	}
+
+    public VideoOverlay getVideoOverlay() {
+        return videoOverlay;
+    }
 }

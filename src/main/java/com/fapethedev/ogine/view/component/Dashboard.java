@@ -19,8 +19,8 @@ import com.fapethedev.ogine.utilities.Iconifier;
 import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.border.UnderlineBorder;
 import com.fapethedev.ogine.view.component.button.DashOButton;
-import com.fapethedev.ogine.view.component.listeners.AdminLabelMouseAdapter;
-import com.fapethedev.ogine.view.component.listeners.DashLogoutMouseAdapter;
+import com.fapethedev.ogine.view.component.listeners.adapter.AdminLabelMouseAdapter;
+import com.fapethedev.ogine.view.component.listeners.adapter.DashLogoutMouseAdapter;
 import com.fapethedev.ogine.view.menu.MainMenu;
 
 import lombok.Getter;
