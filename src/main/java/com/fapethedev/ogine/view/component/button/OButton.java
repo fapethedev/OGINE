@@ -12,7 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-import com.fapethedev.ogine.view.component.listeners.OButtonMouseAdapter;
+import com.fapethedev.ogine.view.component.listeners.adapter.OButtonMouseAdapter;
 
 import lombok.Getter;
 import lombok.Setter;

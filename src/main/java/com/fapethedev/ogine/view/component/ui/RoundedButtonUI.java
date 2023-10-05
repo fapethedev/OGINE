@@ -2,7 +2,7 @@ package com.fapethedev.ogine.view.component.ui;
 
 import com.fapethedev.ogine.view.component.border.RoundedBorder;
 import com.fapethedev.ogine.view.component.button.RoundedButton;
-import com.fapethedev.ogine.view.component.listeners.RoundedButtonMouseAdapter;
+import com.fapethedev.ogine.view.component.listeners.adapter.RoundedButtonMouseAdapter;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
@@ -22,7 +22,7 @@ public class RoundedButtonUI extends BasicButtonUI
     public RoundedButtonUI(int arc)
     {
         this.arc = arc;
-        border = new RoundedBorder(arc);
+        border = new RoundedBorder(arc, Color.WHITE);
         mouseListener = new RoundedButtonMouseAdapter();
     }
 
@@ -59,7 +59,7 @@ public class RoundedButtonUI extends BasicButtonUI
         }
 
         if (!button.hasFocus()){
-            border.setBorderColor(Color.BLACK);
+            border.setBorderColor(Color.WHITE);
             button.setFont(button.getFont().deriveFont(Font.BOLD));
         }
 
@@ -95,6 +95,16 @@ public class RoundedButtonUI extends BasicButtonUI
     }
 
     @Override
+    protected void paintIcon(Graphics g, JComponent c, Rectangle iconRect) {
+        super.paintIcon(g, c, iconRect);
+    }
+
+    @Override
+    protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
+        super.paintText(g, b, textRect, text);
+    }
+
+    @Override
     public void installListeners(AbstractButton b) {
         super.installListeners(b);
         b.addMouseListener(mouseListener);
@@ -105,5 +115,6 @@ public class RoundedButtonUI extends BasicButtonUI
         super.uninstallListeners(b);
         b.removeMouseListener(mouseListener);
     }
+
 
 }

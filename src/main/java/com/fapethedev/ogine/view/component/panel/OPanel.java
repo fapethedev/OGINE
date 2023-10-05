@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 public class OPanel extends JPanel
 {
 	private Color background = Color.WHITE;
-	private Color borderColor = Color.BLACK;
+	private Color borderColor = Color.WHITE;
 	private int radius;
 
 	/**

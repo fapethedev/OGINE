@@ -16,7 +16,7 @@ public class RoundedButton extends JButton
 
     private int arc = 15;
 
-    private RoundedBorder defaultBorder = new RoundedBorder(arc, Color.BLACK);
+    private RoundedBorder defaultBorder = new RoundedBorder(arc, Color.WHITE);
 
     private RoundedBorder hoverBorder = new RoundedBorder(arc, colors.GRAY);
 

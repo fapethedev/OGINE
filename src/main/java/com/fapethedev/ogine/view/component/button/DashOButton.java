@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import com.fapethedev.ogine.utilities.Colors;
-import com.fapethedev.ogine.view.component.listeners.DashOBMouseAdapter;
+import com.fapethedev.ogine.view.component.listeners.adapter.DashOBMouseAdapter;
 
 public class DashOButton extends OButton
 {
