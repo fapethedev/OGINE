@@ -1,4 +1,4 @@
-![Image](src/main/resources/icon.png)
+![Image](src/main/resources/icons/icon.png)
 # OGINE
 
 This project consists of software for managing student registrations
@@ -14,6 +14,8 @@ also become a grade management tool.
 - [MySQL](https://www.mysql.com/)
 - [Swing](https://docs.oracle.com/javase/tutorial/uiswing/)
 - [JasperReports](https://community.jaspersoft.com/)
+- [VlcJ](https://capricasoftware.co.uk/projects/vlcj)
+- [FlatLaf](https://www.formdev.com/flatlaf/)
 
 ## ❤️ Support
 Give us your support by contributing to the project financially
@@ -26,3 +28,4 @@ Add a star too along the way it will be good
 - Github: [@fapethedev](https://github.com/fapethedev)
 
 ## ➤ License
+**please wait a bit more for further information**
