@@ -8,6 +8,12 @@ also become a grade management tool.
 ## Release
 **1.0**
 
+## Prerequisites
+To use the video wallpaper:
+- [Install the version of vlc compatible with your jdk]
+- [Create a video folder and include your video file]
+- [Choose the mov format and name the file vid001. In other cases you should check in the windowOpened method of the LauncherWindowAdapter class]
+
 ## 🛠️ Tech Stack
 - [Java](https://www.oracle.com/java/)
 - [Maven](https://maven.apache.org/)
