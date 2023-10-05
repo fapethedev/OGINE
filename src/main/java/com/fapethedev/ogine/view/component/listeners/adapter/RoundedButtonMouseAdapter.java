@@ -1,4 +1,4 @@
-package com.fapethedev.ogine.view.component.listeners;
+package com.fapethedev.ogine.view.component.listeners.adapter;
 
 import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.button.RoundedButton;

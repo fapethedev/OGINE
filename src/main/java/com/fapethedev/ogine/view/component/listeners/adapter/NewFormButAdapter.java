@@ -1,4 +1,4 @@
-package com.fapethedev.ogine.view.component.listeners;
+package com.fapethedev.ogine.view.component.listeners.adapter;
 
 import java.awt.Color;
 import java.awt.Font;
