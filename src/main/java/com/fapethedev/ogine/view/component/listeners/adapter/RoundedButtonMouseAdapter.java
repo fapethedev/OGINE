@@ -1,6 +1,5 @@
 package com.fapethedev.ogine.view.component.listeners.adapter;
 
-import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.button.RoundedButton;
 
 import java.awt.*;
@@ -9,8 +8,6 @@ import java.awt.event.MouseEvent;
 
 public class RoundedButtonMouseAdapter extends MouseAdapter
 {
-    private final Colors colors = Colors.getInstance();
-
         @Override
         public void mousePressed(MouseEvent e)
         {
@@ -20,8 +17,8 @@ public class RoundedButtonMouseAdapter extends MouseAdapter
                 if (button.isEnabled())
                 {
                     button.setFont(button.getFont().deriveFont(com.lowagie.text.Font.UNDERLINE));
-                    button.setForeground(Color.WHITE);
-                    button.setBackground(colors.LIGHT_BLUE);
+                    button.setForeground(button.getPressedForeground());
+                    button.setBackground(button.getPressedBackground());
                     button.setBorder(button.getPressedBorder());
                     button.repaint();
                 }
@@ -54,7 +51,7 @@ public class RoundedButtonMouseAdapter extends MouseAdapter
                 if (button.isEnabled())
                 {
                     button.setForeground(Color.BLACK);
-                    button.setBackground(colors.GRAY);
+                    button.setBackground(button.getHoverColor());
                     button.setBorder(button.getHoverBorder());
                     button.repaint();
                 }
@@ -70,8 +67,8 @@ public class RoundedButtonMouseAdapter extends MouseAdapter
                 if (button.isEnabled())
                 {
                     button.setForeground(Color.BLACK);
-                    button.setBorder(button.getDefaultBorder());
                     button.setBackground(Color.WHITE);
+                    button.setBorder(button.getDefaultBorder());
                     button.repaint();
                 }
             }
