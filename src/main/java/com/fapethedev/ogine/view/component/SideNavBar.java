@@ -18,9 +18,9 @@ import com.fapethedev.ogine.utilities.Admin;
 import com.fapethedev.ogine.utilities.Iconifier;
 import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.border.UnderlineBorder;
-import com.fapethedev.ogine.view.component.button.DashOButton;
-import com.fapethedev.ogine.view.component.listeners.AdminLabelMouseAdapter;
-import com.fapethedev.ogine.view.component.listeners.DashLogoutMouseAdapter;
+import com.fapethedev.ogine.view.component.button.SideNavButton;
+import com.fapethedev.ogine.view.component.listeners.adapter.AdminLabelMouseAdapter;
+import com.fapethedev.ogine.view.component.listeners.adapter.SideNavLogoutMouseAdapter;
 import com.fapethedev.ogine.view.menu.MainMenu;
 
 import lombok.Getter;
@@ -30,7 +30,7 @@ import lombok.Getter;
  *
  */
 @Getter
-public class Dashboard extends JPanel
+public class SideNavBar extends JPanel
 {
 	private final int DASH_WIDTH = 250;
 	private final int DASH_HEIGTH = MainMenu.HEIGTH - 60;
@@ -49,24 +49,24 @@ public class Dashboard extends JPanel
 	private JLabel dashTitle;
 	private JLabel adminName;
 	private JLabel adminRole;
-	
-	private DashOButton enregBut;
-	private DashOButton inscrBut;
-	private DashOButton listBut;
-	private DashOButton reportBut;
-	private DashOButton optBut;
-	private DashOButton logoutBut;
-	
-	
-	public Dashboard()
+
+	private SideNavButton enregBut;
+	private SideNavButton inscrBut;
+	private SideNavButton listBut;
+	private SideNavButton reportBut;
+	private SideNavButton optBut;
+	private SideNavButton logoutBut;
+
+
+	public SideNavBar()
 	{
 		super();
 		initDash();
 		dashBuild();
 	}
-	
+
 	private void initDash()
-	{	
+	{
 		topPane = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		dashPane = new JPanel(new GridBagLayout());
 		optPane = new JPanel(new GridBagLayout());
@@ -81,12 +81,12 @@ public class Dashboard extends JPanel
 		adminProfile = new JLabel(Iconifier.adminIcon);
 		adminName = new JLabel(Admin.getName().toUpperCase());
 		adminRole = new JLabel(Admin.getRole().toUpperCase());
-		enregBut = new DashOButton(Message.ENREGIS_TAG);
-		inscrBut = new DashOButton(Message.INSCRIS_TAG);
-		listBut = new DashOButton(Message.LISTE_TAG);
-		optBut = new DashOButton(Message.OPTION_TAG);
-		reportBut = new DashOButton(Message.REPORT_TAG);
-		logoutBut = new DashOButton(Message.LOGOUT_TAG);
+		enregBut = new SideNavButton(Message.ENREGIS_TAG);
+		inscrBut = new SideNavButton(Message.INSCRIS_TAG);
+		listBut = new SideNavButton(Message.LISTE_TAG);
+		optBut = new SideNavButton(Message.OPTION_TAG);
+		reportBut = new SideNavButton(Message.REPORT_TAG);
+		logoutBut = new SideNavButton(Message.LOGOUT_TAG);
 	}
 	
 	public void dashBuild()
@@ -168,14 +168,14 @@ public class Dashboard extends JPanel
 		listBut.setPreferredSize(new Dimension(DASH_WIDTH - 15, 50));
 		optBut.setPreferredSize(new Dimension(DASH_WIDTH - 15, 50));
 		reportBut.setPreferredSize(new Dimension(DASH_WIDTH - 15, 50));
-		
+
 		gbc2.gridx = 1;
 		gbc2.gridy = 1;
 		gbc2.fill = GridBagConstraints.HORIZONTAL;
 		gbc2.anchor = GridBagConstraints.CENTER;
 		gbc2.insets = new Insets(1, 1, 4, 1);
 		optPane.add(enregBut, gbc2);
-		
+
 		gbc2.gridx = 1;
 		gbc2.gridy = 2;
 		gbc2.fill = GridBagConstraints.HORIZONTAL;
@@ -209,7 +209,7 @@ public class Dashboard extends JPanel
 	{
 		butPane.setBackground(forColor);
 		logoutBut.setBackground(Colors.getInstance().RED);
-		logoutBut.addMouseListener(new DashLogoutMouseAdapter());
+		logoutBut.addMouseListener(new SideNavLogoutMouseAdapter());
 		logoutBut.setPreferredSize(new Dimension(DASH_WIDTH - 15, 50));
 		gbc3.gridx = 1;
 		gbc3.gridy = 1;

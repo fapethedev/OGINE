@@ -4,19 +4,18 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import com.fapethedev.ogine.utilities.Colors;
-import com.fapethedev.ogine.view.component.listeners.adapter.DashOBMouseAdapter;
+import com.fapethedev.ogine.view.component.listeners.adapter.SideNavButtonMouseAdapter;
 
-public class DashOButton extends OButton
+public class SideNavButton extends OButton
 {
 
-	public DashOButton(String text)
+	public SideNavButton(String text)
 	{
-		super(text);
+		super(text, new SideNavButtonMouseAdapter());
 		this.setBackground(Color.BLACK);
-		this.setBorderColor(Color.WHITE);
 		this.setForeground(Color.WHITE);
+		this.setBorderColor(Color.BLACK);
 		this.setFocusPainted(true);
-		this.addMouseListener(new DashOBMouseAdapter());
 	}
 
 	@Override
@@ -26,13 +25,11 @@ public class DashOButton extends OButton
 		if(this.isFocusOwner())
 		{
 			this.setForeground(Colors.getInstance().BELGE);
-			this.setBorderColor(Colors.getInstance().BELGE);
 			this.revalidate();
             this.repaint();
 		}
 		if(!this.isFocusOwner())
 		{
-			this.setBorderColor(Color.WHITE);
 			this.setForeground(Color.WHITE);
 			this.revalidate();
             this.repaint();

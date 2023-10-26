@@ -7,6 +7,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -62,6 +63,19 @@ public class OButton extends JButton
 		this.setContentAreaFilled(false);
 		this.addMouseListener(new OButtonMouseAdapter());
 	}
+	public OButton(String text, MouseListener mouseListener)
+	{
+		super(text);
+		this.name = text;
+		this.setHorizontalAlignment(SwingConstants.CENTER);
+		this.setBackground(background);
+		this.setBorder(BorderFactory.createEmptyBorder(5, 7, 5, 7));
+		this.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		this.setToolTipText(name);
+		this.setFont(getFont().deriveFont(Font.BOLD));
+		this.setContentAreaFilled(false);
+		this.addMouseListener(mouseListener);
+	}
 
 	
 	@Override
@@ -74,9 +88,9 @@ public class OButton extends JButton
 		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 		g2d.setColor(background);
-		g2d.fillRoundRect(0, 0, width, height, height - 15, height - 15);
+		g2d.fillRoundRect(0, 0, width, height, height - 10, height - 10);
 		g2d.setColor(borderColor);
-		g2d.drawRoundRect(0, 0, width - 1, height - 1, height - 15, height - 15);
+		g2d.drawRoundRect(0, 0, width - 1, height - 1, height - 10, height - 10);
 		g2d.setColor(foreground);
 		
 		if(this.name != null)
