@@ -1,51 +1,34 @@
 package com.fapethedev.ogine.view.launch;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
-
 import com.fapethedev.ogine.controller.launcher.LauncherLoginController;
 import com.fapethedev.ogine.controller.launcher.LauncherQuitController;
 import com.fapethedev.ogine.controller.launcher.LauncherResetController;
 import com.fapethedev.ogine.controller.launcher.LauncherShowController;
-import com.fapethedev.ogine.utilities.Iconifier;
 import com.fapethedev.ogine.utilities.Colors;
+import com.fapethedev.ogine.utilities.Iconifier;
 import com.fapethedev.ogine.utilities.Placeholder;
 import com.fapethedev.ogine.utilities.SwingUtils;
 import com.fapethedev.ogine.view.component.background.LauncherBackground;
 import com.fapethedev.ogine.view.component.border.UnderlineBorder;
 import com.fapethedev.ogine.view.component.button.RoundedButton;
 import com.fapethedev.ogine.view.component.label.Message;
-import com.fapethedev.ogine.view.component.listeners.ExitButtonMouseAdapter;
+
 import com.fapethedev.ogine.view.component.listeners.PwFieldFocusListener;
 import com.fapethedev.ogine.view.component.listeners.ShowKeyListener;
 import com.fapethedev.ogine.view.component.listeners.TextFieldFocusListener;
+import com.fapethedev.ogine.view.component.listeners.adapter.ExitButtonMouseAdapter;
 import com.fapethedev.ogine.view.component.panel.OPanel;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * @author FATIGBA Abiola Pierre-Edy
@@ -116,16 +99,6 @@ public class LauncherPage extends JFrame
 		if(splashEnable)
 		{	
 			new SplashScreen(this).begin();
-//			Path path = Path.of("C:\\Users\\hp\\eclipse-workspace\\OGINE\\src\\main\\java\\com\\ogine");
-//			try(FileInputStream fis = new FileInputStream(path.toFile()))
-//			{
-//				SplashScreenInputStream stream = new SplashScreenInputStream(LauncherPage.this, fis);
-////				stream.close();
-//			}
-//			catch (IOException excp)
-//			{
-//				System.out.println(excp.getMessage()+" "+excp.getCause());
-//			}
 		}
 		SwingUtils.centerFrame(this);
 		initComponent();
@@ -148,7 +121,7 @@ public class LauncherPage extends JFrame
 	{
 		try 
 		{
-			appImage = ImageIO.read(new File(getClass().getResource("/icon.png").toURI()));
+			appImage = ImageIO.read(new File(getClass().getResource("/icons/appIcon.png").toURI()));
 		} 
 		catch(IOException | URISyntaxException e) 
 		{
