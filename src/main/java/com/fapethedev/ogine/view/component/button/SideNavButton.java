@@ -17,26 +17,4 @@ public class SideNavButton extends OButton
 		this.setBorderColor(Color.BLACK);
 		this.setFocusPainted(true);
 	}
-
-	@Override
-	public void paintComponent(Graphics g) 
-	{
-		super.paintComponent(g);
-		if(this.isFocusOwner())
-		{
-			this.setForeground(Colors.getInstance().BELGE);
-			this.revalidate();
-            this.repaint();
-		}
-		if(!this.isFocusOwner())
-		{
-			this.setForeground(Color.WHITE);
-			this.revalidate();
-            this.repaint();
-		}
-		
-		this.repaint();
-	}
-	
-	
 }
