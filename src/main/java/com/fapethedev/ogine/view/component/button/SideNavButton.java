@@ -1,10 +1,8 @@
 package com.fapethedev.ogine.view.component.button;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import com.fapethedev.ogine.utilities.Colors;
 import com.fapethedev.ogine.view.component.listeners.adapter.SideNavButtonMouseAdapter;
+
+import java.awt.*;
 
 public class SideNavButton extends OButton
 {

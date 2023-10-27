@@ -88,9 +88,9 @@ public class OButton extends JButton
 		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 		g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 		g2d.setColor(background);
-		g2d.fillRoundRect(0, 0, width, height, height - 10, height - 10);
+		g2d.fillRoundRect(0, 0, width, height, 15, 15);
 		g2d.setColor(borderColor);
-		g2d.drawRoundRect(0, 0, width - 1, height - 1, height - 10, height - 10);
+		g2d.drawRoundRect(0, 0, width - 1, height - 1, 15, 15);
 		g2d.setColor(foreground);
 		
 		if(this.name != null)

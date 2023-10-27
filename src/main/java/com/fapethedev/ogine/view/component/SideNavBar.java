@@ -135,7 +135,8 @@ public class SideNavBar extends JPanel
 		adminRole.setForeground(Color.WHITE);
 		adminName.addMouseListener(new AdminLabelMouseAdapter());
 		adminRole.addMouseListener(new AdminLabelMouseAdapter());
-		adminProfile.setBorder(UnderlineBorder.createUnderlineBorder(Color.WHITE,1));
+		adminProfile.setBorder(UnderlineBorder.createUnderlineBorder(Color.WHITE));
+		adminRole.setBorder(UnderlineBorder.createUnderlineBorder(Color.WHITE));
 		
 		gbc.gridx = 1;
 		gbc.gridy = 1;
