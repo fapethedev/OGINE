@@ -1,9 +1,9 @@
 package com.fapethedev.ogine.controller.table;
 
+import com.fapethedev.ogine.model.database.entities.Register;
 import com.fapethedev.ogine.model.database.entities.SchoolStudent;
 import com.fapethedev.ogine.model.database.entities.Student;
-import com.fapethedev.ogine.model.database.manager.SchoolStudentManager;
-import com.fapethedev.ogine.model.database.manager.StudentManager;
+import com.fapethedev.ogine.model.database.manager.*;
 import com.fapethedev.ogine.utilities.Iconifier;
 import com.fapethedev.ogine.utilities.QRGenerator;
 import com.fapethedev.ogine.view.component.dialog.SchoolStudentViewerDialog;
@@ -94,6 +94,7 @@ public class DataTableController
 	public synchronized static void showCard(MainMenu owner)
     {
 		SchoolStudentViewerDialog dialog = new SchoolStudentViewerDialog(owner, true);
+
         var pan = owner.getCenterpane();
         var table = owner.getDataTable();
         int i = table.getSelectedRow();
@@ -129,30 +130,38 @@ public class DataTableController
             var ppL = dialog.getParPhoneLab();
             var bL = dialog.getBloodLab();
             var qcL = dialog.getQRLab();
+
             try
             {
                 Student studentByName = StudentManager.getInstance().getStudentByName(new Student.PersonalInfo.Name(lastName, firstName));
 
+				var studentId = StudentManager.getInstance().getIdByName(studentByName.personal().name());
+
+				Register registered = new Register(table.getModel().getValueAt(i, 1).toString(),
+						0, studentId, 0, 0, 0);
+
+				registered = SchoolRegister.getSingleton().getRegistred(registered);
+
 				pL.setIcon(new ImageIcon(studentByName.personal().profile()));
-                matL.setText(table.getModel().getValueAt(i, 1).toString());
+                matL.setText(registered.matricule());
                 lastL.setText(studentByName.personal().name().last());
                 firsL.setText(studentByName.personal().name().first());
                 birtL.setText(studentByName.personal().birthDate().toString());
                 sexlL.setText(studentByName.personal().sex());
-                iL.setText(table.getModel().getValueAt(i, 5).toString());
-                lL.setText(table.getModel().getValueAt(i, 6).toString());
-                sL.setText(table.getModel().getValueAt(i, 7).toString());
+                iL.setText(InstitutManager.getSingleton().getById(registered.institutId()).institutName());
+                lL.setText(LevelManager.getSingleton().getById(registered.levelId()).levelName());
+                sL.setText(table.getModel().getValueAt(i, 5).toString());
                 contL.setText(studentByName.more().phoneNumber());
                 adL.setText(studentByName.more().address());
                 bL.setText(studentByName.personal().bloodGroup());
                 pnL.setText(studentByName.tutor().tutorName());
                 ppL.setText(studentByName.tutor().tutorNumber());
 
-                String data = QRGenerator.prepareData(matL.getText(), lastL.getText(), firsL.getText(), birtL.getText(),
-                		sexlL.getText(), iL.getText(), lL.getText(), sL.getText(), contL.getText(),
-                		adL.getText(), bL.getText(), pnL.getText(), ppL.getText());
-				
-                ImageIcon QRC = QRGenerator.createQRCode(
+                String data = QRGenerator.prepareData(matL.getText(), lastL.getText(), firsL.getText(),
+						birtL.getText(), sexlL.getText(), iL.getText(), lL.getText(), sL.getText(),
+						contL.getText(), adL.getText(), bL.getText(), pnL.getText(), ppL.getText());
+
+				ImageIcon QRC = QRGenerator.createQRCode(
 						data, studentByName.personal().name().last(), studentByName.personal().name().first());
 
 				qcL.setIcon(QRC);
