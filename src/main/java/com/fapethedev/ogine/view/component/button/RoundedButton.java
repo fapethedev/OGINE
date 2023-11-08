@@ -18,17 +18,17 @@ public class RoundedButton extends JButton
 
     private RoundedBorder defaultBorder = new RoundedBorder(arc, Color.WHITE);
 
-    private RoundedBorder hoverBorder = new RoundedBorder(arc, colors.DARK_GRAY);
+    private RoundedBorder hoverBorder = new RoundedBorder(arc, colors.GRAY);
 
-    private RoundedBorder pressedBorder = new RoundedBorder(arc, colors.LIGHT_BLUE);
+    private RoundedBorder pressedBorder = new RoundedBorder(arc, colors.DARK_GRAY);
 
-    private Color hoverColor = colors.DARK_GRAY;
+    private Color hoverColor = colors.GRAY;
 
-    private Color pressedBackground = colors.LIGHT_BLUE;
+    private Color pressedBackground = colors.DARK_GRAY;
 
-    private Color pressedForeground = colors.BELGE;
+    private Color pressedForeground = Color.BLACK;
 
-    private Color focusColor = colors.DARK_BLUE;
+    private Color focusColor = colors.DARK_GRAY;
 
     public RoundedButton(Icon icon) {
         super(icon);
