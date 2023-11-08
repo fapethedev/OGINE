@@ -1,4 +1,4 @@
-![Image](src/main/resources/icons/icon.png)
+![Image](src/main/resources/icons/appIcon.png)
 # OGINE
 
 This project consists of software for managing student registrations
