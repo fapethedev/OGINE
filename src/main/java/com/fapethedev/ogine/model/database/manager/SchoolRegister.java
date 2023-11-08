@@ -82,7 +82,7 @@ public class SchoolRegister
 			var newSpecialityId = newRegister.specialityId();
 			
 			var selectQuery = "SELECT id FROM active_registers WHERE matricule=? AND student_id=?";
-			var updateQuery = "UPDATE active_registers SET matricule=?, year=?, student_id=?, institut_id=?, level_id=?, speciality_id=? WHERE id=?";
+			var updateQuery = "UPDATE active_registers SET matricule=?, years=?, student_id=?, institut_id=?, level_id=?, speciality_id=? WHERE id=?";
 			
 			var statement = connection.prepareStatement(selectQuery);
 			statement.setString(1, oldMatricule);
@@ -199,7 +199,7 @@ public class SchoolRegister
 			while(rs.next())
 			{
 				 var matricule = rs.getString("matricule");
-				 var year = rs.getInt("year");
+				 var year = rs.getInt("years");
                  var studentId = rs.getInt("student_id");
 				 var institutId = rs.getInt("institut_id");
 				 var levelId = rs.getInt("level_id");
@@ -231,7 +231,7 @@ public class SchoolRegister
 			if(rs.next())
 			{
 				 var outputMatricule = rs.getString("matricule");
-				 var outputYear = rs.getInt("year");
+				 var outputYear = rs.getInt("years");
                  var outputStudentId = rs.getInt("student_id");
 				 var outputInstitutId = rs.getInt("institut_id");
 				 var outputLevelId = rs.getInt("level_id");
