@@ -127,4 +127,29 @@ public class LevelManager
         	throw new LevelManagerException(sqle);
         }
     }
+
+	public Level getById(int id) throws LevelManagerException
+    {
+        try
+        {
+        	var selectQuery = "SELECT DISTINCT * FROM levels WHERE id=?";
+
+        	try(var statement = connection.prepareStatement(selectQuery))
+        	{
+        		statement.setInt(1, id);
+            	try(var rs = statement.executeQuery())
+            	{
+    	        	if(rs.next())
+    	        	{
+    	        		return new Level(rs.getInt(1), rs.getString(2));
+    	        	}
+            	}
+        	}
+        	throw new LevelManagerException(Message.FAILED_SELECT_MSG);
+        }
+        catch(SQLException sqle)
+        {
+        	throw new LevelManagerException(sqle);
+        }
+    }
 }

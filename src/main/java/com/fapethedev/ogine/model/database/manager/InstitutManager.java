@@ -89,4 +89,29 @@ public class InstitutManager
         	throw new InstitutManagerException(sqle);
         }
     }
+
+	public Institut getById(int id) throws InstitutManagerException
+    {
+        try
+        {
+        	var selectQuery = "SELECT DISTINCT * FROM instituts WHERE id=?";
+        	try(var statement = connection.prepareStatement(selectQuery))
+			{
+				statement.setInt(1, id);
+
+				try (var rs = statement.executeQuery())
+				{
+					if (rs.next())
+					{
+						return new Institut(rs.getString(2));
+					}
+				}
+				throw new InstitutManagerException(Message.FAILED_SELECT_MSG);
+			}
+        }
+        catch(SQLException sqle)
+        {
+        	throw new InstitutManagerException(sqle);
+        }
+    }
 }
