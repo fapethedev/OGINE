@@ -1,24 +1,17 @@
 package com.fapethedev.ogine.controller.form;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import javax.swing.*;
-
-import com.fapethedev.ogine.model.database.entities.Institut;
-import com.fapethedev.ogine.model.database.entities.Speciality;
-import com.fapethedev.ogine.model.database.entities.Student;
-import com.fapethedev.ogine.model.database.manager.InstitutManager;
-import com.fapethedev.ogine.model.database.manager.LevelManager;
-import com.fapethedev.ogine.model.database.manager.SpecialityManager;
-import com.fapethedev.ogine.model.database.manager.StudentManager;
+import com.fapethedev.ogine.model.database.entities.*;
+import com.fapethedev.ogine.model.database.manager.*;
+import com.fapethedev.ogine.utilities.Iconifier;
 import com.fapethedev.ogine.utilities.Placeholder;
 import com.fapethedev.ogine.view.component.label.Message;
-import com.fapethedev.ogine.model.database.entities.Level;
-import com.fapethedev.ogine.utilities.Iconifier;
 import com.fapethedev.ogine.view.menu.MainMenu;
 import com.toedter.calendar.JYearChooser;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * @author FATIGBA Abiola Pierre-Edy
@@ -101,98 +94,100 @@ public class RegisterController
 				
 				try
 				{
-//					var it1 = StudentManager.getInstance().getId(stu);
-//					var it2 = InstitutManager.getSingleton().getId(ist);
-//					var it3 = LevelManager.getSingleton().getId(lvl);
-//					var it4 = SpecialityManager.getSingleton().getId(spe);
-//					var inRegister = new Register(mat, yea, it1, it2, it3, it4);
-//					if(!SchoolRegister.getSingleton().verifRegistredStudent(inRegister))
-//					{
-//						SchoolRegister.getSingleton().register(inRegister);
-//
-//						sB.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
-//						iB.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
-//						lB.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
-//						spB.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
-//						yearF.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
-//						matriF.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
-//
-//						lastF.setBorderColor(Color.GREEN);
-//						firsF.setBorderColor(Color.GREEN);
-//						birtF.setBorderColor(Color.GREEN);
-//						sexlF.setBorderColor(Color.GREEN);
-//						cniF.setBorderColor(Color.GREEN);
-//						phonF.setBorderColor(Color.GREEN);
-//						addrF.setBorderColor(Color.GREEN);
-//
-//						JOptionPane.showMessageDialog
-//						(
-//							pan,
-//							new Message(Message.REGISTRATION_SUCCESS_MSG),
-//							Message.DEFAULT_TITLE_MSG,
-//							JOptionPane.INFORMATION_MESSAGE,
-//							Iconifier.confirmIcon
-//						);
-//
-//						sB.setBorder(new JComboBox<>().getBorder());
-//						iB.setBorder(new JComboBox<>().getBorder());
-//						lB.setBorder(new JComboBox<>().getBorder());
-//						spB.setBorder(new JComboBox<>().getBorder());
-//						yearF.setBorder(new JYearChooser().getBorder());
-//						matriF.setBorder(new JTextField().getBorder());
-//
-//						RegisterResetController.reset(owner);
-//						int choice2 = JOptionPane.showConfirmDialog
-//						(
-//							pan,
-//							new Message(Message.ASK_CHECK_DATA_MSG),
-//							Message.CONFIRM_TITLE,
-//							JOptionPane.YES_NO_OPTION,
-//							JOptionPane.QUESTION_MESSAGE,
-//							Iconifier.questionIcon
-//						);
-//						if(choice2 == JOptionPane.YES_OPTION)
-//						{
-//							var card = owner.getCard();
-//							var list = owner.getList(5);
-//							var tPan = owner.getTabbedPane();
-//							tPan.setSelectedIndex(0);
-//							card.show(pan, list);
-//						}
-//					}
-//					else
-//					{
-//						JOptionPane.showMessageDialog
-//						(
-//							pan,
-//							new Message(Message.IS_EXISTS_MSG),
-//							Message.DEFAULT_TITLE_MSG,
-//							JOptionPane.WARNING_MESSAGE,
-//							Iconifier.warningIcon
-//						);
-//
-//						int choice2 = JOptionPane.showConfirmDialog
-//						(
-//							pan,
-//							new Message(Message.ASK_INSCR_INFO_MSG),
-//							Message.CONFIRM_TITLE,
-//							JOptionPane.YES_NO_OPTION,
-//							JOptionPane.QUESTION_MESSAGE,
-//							Iconifier.questionIcon
-//						);
-//						if(choice2 == JOptionPane.YES_OPTION)
-//						{
-//							var card = owner.getCard();
-//							var list = owner.getList(4);
-//							var tPan = owner.getTabbedPane();
-//							tPan.setSelectedIndex(1);
-//							card.show(pan, list);
-//						}
-//					}
+					var it1 = StudentManager.getInstance().getIdByName(stu.personal().name());
+					var it2 = InstitutManager.getSingleton().getId(ist);
+					var it3 = LevelManager.getSingleton().getId(lvl);
+					var it4 = SpecialityManager.getSingleton().getId(spe);
+					var inRegister = new Register(mat, yea, it1, it2, it3, it4);
+
+					if(!SchoolRegister.getSingleton().verifRegistredStudent(inRegister))
+					{
+						SchoolRegister.getSingleton().register(inRegister);
+
+						sB.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
+						iB.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
+						lB.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
+						spB.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
+						yearF.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
+						matriF.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2, true));
+
+						lastF.setDefaultBorderColor(Color.GREEN);
+						firsF.setDefaultBorderColor(Color.GREEN);
+						birtF.setDefaultBorderColor(Color.GREEN);
+						sexlF.setDefaultBorderColor(Color.GREEN);
+						cniF.setDefaultBorderColor(Color.GREEN);
+						phonF.setDefaultBorderColor(Color.GREEN);
+						addrF.setDefaultBorderColor(Color.GREEN);
+
+						JOptionPane.showMessageDialog
+						(
+							pan,
+							new Message(Message.REGISTRATION_SUCCESS_MSG),
+							Message.DEFAULT_TITLE_MSG,
+							JOptionPane.INFORMATION_MESSAGE,
+							Iconifier.confirmIcon
+						);
+
+						sB.setBorder(new JComboBox<>().getBorder());
+						iB.setBorder(new JComboBox<>().getBorder());
+						lB.setBorder(new JComboBox<>().getBorder());
+						spB.setBorder(new JComboBox<>().getBorder());
+						yearF.setBorder(new JYearChooser().getBorder());
+						matriF.setBorder(new JTextField().getBorder());
+
+						RegisterController.reset(owner);
+						int choice2 = JOptionPane.showConfirmDialog
+						(
+							pan,
+							new Message(Message.ASK_CHECK_DATA_MSG),
+							Message.CONFIRM_TITLE,
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,
+							Iconifier.questionIcon
+						);
+						if(choice2 == JOptionPane.YES_OPTION)
+						{
+							var card = owner.getCard();
+							var list = owner.getList(3);
+							var tPan = owner.getTabbedPane();
+							tPan.setSelectedIndex(0);
+							card.show(pan, list);
+						}
+					}
+					else
+					{
+						JOptionPane.showMessageDialog
+						(
+							pan,
+							new Message(Message.IS_EXISTS_MSG),
+							Message.DEFAULT_TITLE_MSG,
+							JOptionPane.WARNING_MESSAGE,
+							Iconifier.warningIcon
+						);
+
+						int choice2 = JOptionPane.showConfirmDialog
+						(
+							pan,
+							new Message(Message.ASK_INSCR_INFO_MSG),
+							Message.CONFIRM_TITLE,
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.QUESTION_MESSAGE,
+							Iconifier.questionIcon
+						);
+						if(choice2 == JOptionPane.YES_OPTION)
+						{
+							var card = owner.getCard();
+							var list = owner.getList(2);
+							var tPan = owner.getTabbedPane();
+							tPan.setSelectedIndex(1);
+							card.show(pan, list);
+						}
+					}
 				}
 				catch (Exception e)
 				{
 					var errMsg = e.getMessage();
+
 					JOptionPane.showMessageDialog
 					(		
 						pan,
@@ -495,7 +490,7 @@ public class RegisterController
 		}
 		catch (Exception e)
 		{
-			System.err.println(e);
+			System.err.println(e.getMessage());
 		}
 		sB.setSelectedIndex(-1);
 
@@ -514,7 +509,7 @@ public class RegisterController
 		}
 		catch (Exception e)
 		{
-			System.err.println(e);
+			System.err.println(e.getMessage());
 		}
 		iB.setSelectedIndex(-1);
 	}
@@ -535,7 +530,7 @@ public class RegisterController
 		if(choice == JOptionPane.YES_OPTION)
 		{
 			RegisterController.reset(owner);
-			owner.getCard().show(pan, owner.getList(3));
+			owner.getRegisterSliderPane().show(0);
 		}
 	}
 
@@ -589,6 +584,7 @@ public class RegisterController
 		iB.setSelectedIndex(-1);
 		lB.setSelectedIndex(-1);
 		spB.setSelectedIndex(-1);
+
 		matriF.setText(Message.MATRICULE_TAG);
 		yearF.setYear(Calendar.getInstance().get(Calendar.YEAR));
 		lastF.setText(Message.LAST_NAME);
@@ -599,6 +595,14 @@ public class RegisterController
 		phonF.setText(Message.PHONE_TAG);
 		addrF.setText(Message.ADDR_TAG);
 
+		lastF.setDefaultBorderColor(Color.BLACK);
+		firsF.setDefaultBorderColor(Color.BLACK);
+		birtF.setDefaultBorderColor(Color.BLACK);
+		sexlF.setDefaultBorderColor(Color.BLACK);
+		cniF.setDefaultBorderColor(Color.BLACK);
+		phonF.setDefaultBorderColor(Color.BLACK);
+		addrF.setDefaultBorderColor(Color.BLACK);
+
 		Placeholder.addPlaceholderStyle(matriF);
 		Placeholder.addPlaceholderStyle(lastF);
 		Placeholder.addPlaceholderStyle(firsF);
@@ -607,6 +611,7 @@ public class RegisterController
 		Placeholder.addPlaceholderStyle(sexlF);
 		Placeholder.addPlaceholderStyle(phonF);
 		Placeholder.addPlaceholderStyle(addrF);
+
 		Placeholder.defaultFGetPlaceholder(matriF);
 		Placeholder.defaultFGetPlaceholder(lastF);
 		Placeholder.defaultFGetPlaceholder(firsF);
