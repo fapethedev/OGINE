@@ -117,10 +117,10 @@ public class StudentController
 						ToCase.nameToFormat(tutfF.getText())
 				);
 				Student.MoreInfo moreInfo = new Student.MoreInfo(
-						ToCase.nameToFormat(reliF.getText()),
 						ToCase.nameToFormat(phonF.getText()),
-						ToCase.nameToFormat(addrF.getText())
-				);
+						ToCase.nameToFormat(addrF.getText()),
+						ToCase.nameToFormat(reliF.getText())
+						);
 				try
 				{
 					if(!StudentManager.getInstance().checkStudentName(name))
