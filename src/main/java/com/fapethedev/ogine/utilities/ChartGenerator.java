@@ -95,7 +95,7 @@ public class ChartGenerator
 		//
 		Chart3D chart = Chart3DFactory.createPieChart("GRAPH DES INSCRIPTIONS", "...........", dataset3d);
 		chart.setAntiAlias(true);
-		chart.setTitle("GRAPH DES ENREGISTREMENTS", new Font("Times new roman", Font.BOLD, 28), Color.LIGHT_GRAY);
+		chart.setTitle("GRAPH DES INSCRIPTIONS", new Font("Times new roman", Font.BOLD, 28), Color.LIGHT_GRAY);
 		chart.setTitleAnchor(Anchor2D.TOP_LEFT);
 		chart.setElementHinting(true);
 		chart.setNotify(true);
