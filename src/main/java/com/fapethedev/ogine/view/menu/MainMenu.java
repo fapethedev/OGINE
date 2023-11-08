@@ -1,17 +1,51 @@
 package com.fapethedev.ogine.view.menu;
 
-import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
-import java.awt.image.BufferedImage;
-import java.beans.PropertyVetoException;
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
+import com.alee.extended.layout.VerticalFlowLayout;
+import com.fapethedev.ogine.controller.dashboard.DashboardController;
+import com.fapethedev.ogine.controller.form.*;
+import com.fapethedev.ogine.controller.jasperreport.JasperReportSchoolStudentController;
+import com.fapethedev.ogine.controller.jasperreport.JaspertReportRegisterController;
+import com.fapethedev.ogine.controller.jasperreport.JaspertReportStudentController;
+import com.fapethedev.ogine.controller.table.*;
+import com.fapethedev.ogine.model.database.entities.Institut;
+import com.fapethedev.ogine.model.database.entities.Level;
+import com.fapethedev.ogine.model.database.entities.Speciality;
+import com.fapethedev.ogine.model.database.entities.Student;
+import com.fapethedev.ogine.model.database.exception.SchoolRegisterException;
+import com.fapethedev.ogine.model.database.exception.StudentManagerException;
+import com.fapethedev.ogine.model.database.manager.SchoolRegister;
+import com.fapethedev.ogine.model.database.manager.StudentManager;
+import com.fapethedev.ogine.utilities.ChartGenerator;
+import com.fapethedev.ogine.utilities.Colors;
+import com.fapethedev.ogine.utilities.Iconifier;
+import com.fapethedev.ogine.utilities.SwingUtils;
+import com.fapethedev.ogine.view.component.SideNavBar;
+import com.fapethedev.ogine.view.component.MenuBar;
+import com.fapethedev.ogine.view.component.ToolBar;
+import com.fapethedev.ogine.view.component.border.RoundedBorder;
+import com.fapethedev.ogine.view.component.border.UnderlineBorder;
+import com.fapethedev.ogine.view.component.button.ArrowButton;
+import com.fapethedev.ogine.view.component.button.OButton;
+import com.fapethedev.ogine.view.component.button.RoundedButton;
+import com.fapethedev.ogine.view.component.field.OJTextField;
+import com.fapethedev.ogine.view.component.field.OSearchField;
+import com.fapethedev.ogine.view.component.field.OTextField;
+import com.fapethedev.ogine.view.component.label.Message;
+import com.fapethedev.ogine.view.component.listeners.*;
+import com.fapethedev.ogine.view.component.listeners.NumberKeyListener;
+import com.fapethedev.ogine.view.component.listeners.adapter.OButtonMouseAdapter;
+import com.fapethedev.ogine.view.component.listeners.adapter.PaneMouseAdapter;
+import com.fapethedev.ogine.view.component.panel.OPanel;
+import com.fapethedev.ogine.view.component.panel.SliderPanel;
+import com.fapethedev.ogine.view.component.renderer.BoldListCellRenderer;
+import com.fapethedev.ogine.view.component.renderer.BoldTableCellRenderer;
+import com.fapethedev.ogine.view.component.ui.ComboUI;
+import com.fapethedev.ogine.view.component.ui.RoundComboUI;
+import com.formdev.flatlaf.ui.FlatComboBoxUI;
+import com.formdev.flatlaf.ui.FlatTableHeaderUI;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JYearChooser;
+import lombok.Getter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,66 +53,13 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-
-import com.alee.extended.layout.VerticalFlowLayout;
-import com.fapethedev.ogine.controller.dashboard.DashboardController;
-import com.fapethedev.ogine.controller.jasperreport.JasperReportSchoolStudentController;
-import com.fapethedev.ogine.controller.jasperreport.JaspertReportRegisterController;
-import com.fapethedev.ogine.controller.jasperreport.JaspertReportStudentController;
-import com.fapethedev.ogine.controller.table.DataTableController;
-import com.fapethedev.ogine.model.database.manager.SchoolRegister;
-import com.fapethedev.ogine.model.database.manager.StudentManager;
-import com.fapethedev.ogine.model.database.entities.Institut;
-import com.fapethedev.ogine.model.database.entities.Speciality;
-import com.fapethedev.ogine.model.database.entities.Student;
-import com.fapethedev.ogine.model.database.exception.SchoolRegisterException;
-import com.fapethedev.ogine.model.database.exception.StudentManagerException;
-import com.fapethedev.ogine.utilities.ChartGenerator;
-import com.fapethedev.ogine.utilities.Iconifier;
-import com.fapethedev.ogine.utilities.OgineColor;
-import com.fapethedev.ogine.utilities.SwingUtils;
-import com.fapethedev.ogine.view.component.Dashboard;
-import com.fapethedev.ogine.view.component.MenuBar;
-import com.fapethedev.ogine.view.component.ToolBar;
-import com.fapethedev.ogine.view.component.border.RoundedBorder;
-import com.fapethedev.ogine.view.component.border.UnderlineBorder;
-import com.fapethedev.ogine.view.component.button.ArrowButton;
-import com.fapethedev.ogine.view.component.button.OButton;
-import com.fapethedev.ogine.view.component.field.OJTextField;
-import com.fapethedev.ogine.view.component.field.OSearchField;
-import com.fapethedev.ogine.view.component.field.OTextField;
-import com.fapethedev.ogine.view.component.label.Message;
-import com.fapethedev.ogine.view.component.renderer.BoldListCellRenderer;
-import com.fapethedev.ogine.view.component.renderer.BoldTableCellRenderer;
-import com.fapethedev.ogine.view.component.ui.ComboUI;
-import com.fapethedev.ogine.view.component.ui.RoundComboUI;
-import com.formdev.flatlaf.ui.FlatComboBoxUI;
-import com.formdev.flatlaf.ui.FlatTableHeaderUI;
-import com.fapethedev.ogine.controller.form.ReRegisterCancelController;
-import com.fapethedev.ogine.controller.form.ReRegisterInfoController;
-import com.fapethedev.ogine.controller.form.RegisterCancelController;
-import com.fapethedev.ogine.controller.form.RegisterInfoController;
-import com.fapethedev.ogine.controller.form.RegisterResetController;
-import com.fapethedev.ogine.controller.form.RegisterUpdateController;
-import com.fapethedev.ogine.controller.form.RegisterValidateController;
-import com.fapethedev.ogine.controller.form.StudentRegisterController;
-import com.fapethedev.ogine.controller.table.DataTableCancelController;
-import com.fapethedev.ogine.controller.table.DataTableDeleteController;
-import com.fapethedev.ogine.controller.table.DataTableShowController;
-import com.fapethedev.ogine.controller.table.DataTableUpdateController;
-import com.fapethedev.ogine.model.database.entities.Level;
-import com.fapethedev.ogine.view.component.listeners.AlphaKeyListener;
-import com.fapethedev.ogine.view.component.listeners.NewFormButAdapter;
-import com.fapethedev.ogine.view.component.listeners.NumberCaretListener;
-import com.fapethedev.ogine.view.component.listeners.NumberKeyListener;
-import com.fapethedev.ogine.view.component.listeners.OButtonMouseAdapter;
-import com.fapethedev.ogine.view.component.listeners.PaneMouseAdapter;
-import com.fapethedev.ogine.view.component.panel.OPanel;
-import com.fapethedev.ogine.view.component.panel.SliderPanel;
-import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.JYearChooser;
-
-import lombok.Getter;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.beans.PropertyVetoException;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * @author FATIGBA Abiola Pierre-Edy
@@ -87,6 +68,7 @@ import lombok.Getter;
 public class MainMenu extends JFrame 
 {
     private static MainMenu singleton;
+    private final Colors colors = Colors.getInstance();
 
     public static final int WIDTH  = SwingUtils.getMainWidth();
     public static final int HEIGTH = SwingUtils.getHeight();
@@ -118,10 +100,10 @@ public class MainMenu extends JFrame
     private SliderPanel reRegisterSliderPane;
 
     private BufferedImage image;
-    private String[] list = {"DEFAULT", "SLIDE_1", "SLIDE_2", "LISTE", "OPTION", "JASPER"};
+    private final String[] list = {"DEFAULT", "SLIDE_1", "SLIDE_2", "LISTE", "OPTION", "JASPER"};
     private JPanel mainPane;
     private JPanel centerPane;
-    private Dashboard dash;
+    private SideNavBar dash;
 
     public CardLayout card;
 
@@ -189,35 +171,35 @@ public class MainMenu extends JFrame
     private JLabel reRegisterClientProfile;
     //
     private JButton studentChartSaveBut;
-    private OButton newStudentRegisterFormBut;
-    private OButton studentPicturePicker;
-    private JButton studentValidate;
-    private JButton studentReset;
-    private JButton studentCancel;
-    private JButton studentUpdate;
+    private RoundedButton newStudentRegisterFormBut;
+    private RoundedButton studentPicturePicker;
+    private RoundedButton studentValidate;
+    private RoundedButton studentReset;
+    private RoundedButton studentCancel;
+    private RoundedButton studentUpdate;
     //
-    private OButton newRegisterFormBut;
-    private OButton newReRegisterFormBut;
+    private RoundedButton newRegisterFormBut;
+    private RoundedButton newReRegisterFormBut;
     private JButton nrChartSaveBut;
-    private JButton registerValidate;
-    private JButton registerReset;
-    private JButton registerCancel;
-    private JButton registerUpdate;
-    private JButton reRegisterValidate;
-    private JButton reRegisterReset;
-    private JButton reRegisterCancel;
-    private JButton reRegisterUpdate;
+    private RoundedButton registerValidate;
+    private RoundedButton registerReset;
+    private RoundedButton registerCancel;
+    private RoundedButton registerUpdate;
+    private RoundedButton reRegisterValidate;
+    private RoundedButton reRegisterReset;
+    private RoundedButton reRegisterCancel;
+    private RoundedButton reRegisterUpdate;
     
-    private JButton previewBut;
-    private JButton updateBut;
-    private JButton deleteBut;
-    private JButton cancelBut;
+    private RoundedButton previewBut;
+    private RoundedButton updateBut;
+    private RoundedButton deleteBut;
+    private RoundedButton cancelBut;
     
-    private OButton sorterBut;
+    private RoundedButton sorterBut;
     
-    private JButton enregReportBut;
-    private JButton listReportBut;
-    private JButton fullReportBut;
+    private RoundedButton enregReportBut;
+    private RoundedButton listReportBut;
+    private RoundedButton fullReportBut;
     
     private final AlphaKeyListener alphaKeyListener = new AlphaKeyListener();
     private final NumberKeyListener numberKeyListener = new NumberKeyListener();
@@ -237,9 +219,7 @@ public class MainMenu extends JFrame
                 	MainMenu.this.requestFocusInWindow();
                 }
         });
-//        GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-//        GraphicsDevice device = environment.getDefaultScreenDevice();
-//        System.err.println(device.getDisplayMode());
+
         initMainMenu();
         buildContentPane();
         mainMenuListeners();
@@ -272,7 +252,7 @@ public class MainMenu extends JFrame
         this.setLocation(0, 0);
         try
         {
-            image = ImageIO.read(new File(getClass().getResource("/icon.png").toURI()));
+            image = ImageIO.read(new File(getClass().getResource("/icons/appIcon.png").toURI()));
         } 
         catch (IOException | URISyntaxException e) 
         {
@@ -371,7 +351,7 @@ public class MainMenu extends JFrame
 	    centerPane = new JPanel();
 	    defaultPane = new JPanel(new GridBagLayout());
 	    tabbedPane = new JTabbedPane();
-	    dash = new Dashboard();
+	    dash = new SideNavBar();
 	
 	    registerPane = new JPanel();
 	    registerChartPane = new JPanel(new BorderLayout());
@@ -397,7 +377,7 @@ public class MainMenu extends JFrame
 
     private void buildCenterPane()
     {
-    	centerPane.setBorder(BorderFactory.createLineBorder(OgineColor.DARK_BLUE, 3));
+    	centerPane.setBorder(BorderFactory.createLineBorder(colors.DARK_BLUE, 3));
         centerPane.setLayout(card);
         centerPane.add(defaultPane, list[0]);
         //centerPane.add(studentRegisterChartPane, list[1]);
@@ -424,14 +404,14 @@ public class MainMenu extends JFrame
 
         defaultPane.setLocation(4, 4);
         defaultPane.setSize(FORM_DIM);	
-        defaultPane.setBackground(OgineColor.BLUE);
+        defaultPane.setBackground(colors.BLUE);
         
 //        studentRegisterChartPane.setLocation(4, 4);
 //        studentRegisterChartPane.setSize(FORM_DIM);
         studentRegisterChartPane.setBackground(Color.WHITE);
         studentRegisterPane.setLocation(4, 4);
         studentRegisterPane.setSize(FORM_DIM);
-        studentRegisterPane.setBackground(OgineColor.BLUE);
+        studentRegisterPane.setBackground(colors.DARK_BLUE);
         registerChartPane.setLocation(4, 4);
         registerChartPane.setSize(FORM_DIM);
         registerChartPane.setBackground(Color.WHITE);
@@ -504,9 +484,9 @@ public class MainMenu extends JFrame
     	JLabel squadFemalNumLab = null;
 		try
 		{
-			squadNumLab = new JLabel("" + StudentManager.getInstance().getMaxStudents());
-			squadMalNumLab = new JLabel("" + StudentManager.getInstance().getMaxMale());
-	    	squadFemalNumLab = new JLabel("" + StudentManager.getInstance().getMaxFemale());
+			squadNumLab = new JLabel(String.valueOf(StudentManager.getInstance().getMaxStudents()));
+			squadMalNumLab = new JLabel(String.valueOf(StudentManager.getInstance().getMaxMale()));
+	    	squadFemalNumLab = new JLabel(String.valueOf(StudentManager.getInstance().getMaxFemale()));
 		} 
 		catch(StudentManagerException e)
 		{
@@ -519,7 +499,7 @@ public class MainMenu extends JFrame
     	JPanel squadMalPane = new JPanel(new BorderLayout(1, 1));
     	JPanel squadFemalPane = new JPanel(new BorderLayout(1, 1));
     	JPanel chartPanel = new JPanel(new BorderLayout());
-    	JPanel backPane = new JPanel(new FlowLayout(FlowLayout.RIGHT, 75, 5));
+    	JPanel backPane = new JPanel(new FlowLayout(FlowLayout.RIGHT));
     	JPanel butPane = new JPanel(new FlowLayout(FlowLayout.CENTER));
     	JPanel saveButPane = new JPanel(new FlowLayout(FlowLayout.CENTER));
     	//
@@ -527,20 +507,20 @@ public class MainMenu extends JFrame
     	//
     	midPane.setBackground(Color.WHITE);
     	//
-    	backPane.setBackground(OgineColor.DARK_BLUE);
-    	butPane.setBackground(OgineColor.DARK_BLUE);
+    	backPane.setBackground(colors.DARK_BLUE);
+    	butPane.setBackground(colors.DARK_BLUE);
     	butPane.setPreferredSize(new Dimension(250, 70));
     	//
     	squadPane.setBorder(BorderFactory.createEmptyBorder());
-    	squadPane.setBackground(OgineColor.BLUE);
+    	squadPane.setBackground(colors.BLUE);
     	squadPane.addMouseListener(new PaneMouseAdapter());
     	//
     	squadMalPane.setBorder(BorderFactory.createEmptyBorder());
-    	squadMalPane.setBackground(OgineColor.RED);
+    	squadMalPane.setBackground(colors.RED);
     	squadMalPane.addMouseListener(new PaneMouseAdapter());
     	//
     	squadFemalPane.setBorder(BorderFactory.createEmptyBorder());
-    	squadFemalPane.setBackground(OgineColor.DARK_BLUE);
+    	squadFemalPane.setBackground(colors.DARK_BLUE);
     	squadFemalPane.addMouseListener(new PaneMouseAdapter());
     	//
     	saveButPane.setBackground(Color.WHITE);
@@ -588,14 +568,15 @@ public class MainMenu extends JFrame
     	studentChartSaveBut.setHorizontalTextPosition(JButton.CENTER);
     	studentChartSaveBut.setVerticalTextPosition(JButton.CENTER);
     	//
-    	newStudentRegisterFormBut = new OButton("COMMENCER UN ENREGISTREMENT");
+    	newStudentRegisterFormBut = new RoundedButton("COMMENCER UN ENREGISTREMENT");
     	newStudentRegisterFormBut.setToolTipText(Message.NEW_PAPERS_TAG);
-    	newStudentRegisterFormBut.setBackground(OgineColor.BELGE);
-    	newStudentRegisterFormBut.setForeground(Color.BLACK);
-    	newStudentRegisterFormBut.setBorderColor(Color.BLACK);
-    	newStudentRegisterFormBut.addMouseListener(new NewFormButAdapter());
-    	//
-    	studentRegisterChartPane.add(topPane, BorderLayout.NORTH);
+        newStudentRegisterFormBut.getDefaultBorder().setBorderColor(Color.WHITE);
+        newStudentRegisterFormBut.setPressedForeground(Color.WHITE);
+        newStudentRegisterFormBut.setPressedBackground(colors.DARK_BLUE);
+        newStudentRegisterFormBut.setPreferredSize(new Dimension(220, 45));
+
+        //
+        studentRegisterChartPane.add(topPane, BorderLayout.NORTH);
     	studentRegisterChartPane.add(midPane, BorderLayout.CENTER);
     	studentRegisterChartPane.add(backPane, BorderLayout.SOUTH);
     	//
@@ -685,11 +666,11 @@ public class MainMenu extends JFrame
         addressField = new OTextField(Message.ADDR_TAG);
         religionField = new OTextField(Message.FAITH_TAG);
 
-        studentValidate = new JButton("Enregistrer", Iconifier.validateIcon);
-        studentReset = new JButton("Effacer", Iconifier.errorFormIcon);
-        studentCancel = new JButton("Retour", Iconifier.backIcon);
-        studentUpdate = new JButton("Modifier", Iconifier.updateFormIcon);
-        studentPicturePicker = new OButton(Message.PIC_TAG);
+        studentValidate = new RoundedButton("Enregistrer", Iconifier.validateIcon);
+        studentReset = new RoundedButton("Effacer", Iconifier.errorFormIcon);
+        studentCancel = new RoundedButton("Retour", Iconifier.backIcon);
+        studentUpdate = new RoundedButton("Modifier", Iconifier.updateFormIcon);
+        studentPicturePicker = new RoundedButton(Message.PIC_TAG);
 
         
         persPane.setBounds(5, 180, 510, 255);
@@ -700,7 +681,7 @@ public class MainMenu extends JFrame
 	        TitledBorder.DEFAULT_JUSTIFICATION,
 			TitledBorder.DEFAULT_POSITION,
 	        FORM_TITLE_FONT,
-	        OgineColor.DARK_BLUE
+	        colors.DARK_BLUE
         ));
 
         parPane.setBounds(535, 180, 510, 255);
@@ -711,7 +692,7 @@ public class MainMenu extends JFrame
             TitledBorder.DEFAULT_JUSTIFICATION,
 			TitledBorder.DEFAULT_POSITION,
             FORM_TITLE_FONT,
-            OgineColor.DARK_BLUE
+            colors.DARK_BLUE
         ));
 
         othPane.setBounds(535, 440, 510, 130);
@@ -722,7 +703,7 @@ public class MainMenu extends JFrame
 	        TitledBorder.DEFAULT_JUSTIFICATION,
 			TitledBorder.DEFAULT_POSITION,
 	        FORM_TITLE_FONT,
-	        OgineColor.DARK_BLUE
+	        colors.DARK_BLUE
         ));
 
         supPane.setBounds(5, 440, 510, 130);
@@ -733,23 +714,23 @@ public class MainMenu extends JFrame
             TitledBorder.DEFAULT_JUSTIFICATION,
 			TitledBorder.DEFAULT_POSITION,
             FORM_TITLE_FONT,
-            OgineColor.DARK_BLUE
+            colors.DARK_BLUE
         ));
 
         butPane.setBounds(5, 580, 510, 50);
         butPane.setLayout(new FlowLayout(FlowLayout.CENTER, 2, 2));
-        butPane.setBackground(OgineColor.BLUE);
-        butPane.setBorderColor(OgineColor.BLUE);
+        butPane.setBackground(colors.DARK_BLUE);
+        butPane.setBorderColor(colors.DARK_BLUE);
 
         butPane2.setBounds(845, 580, 200, 50);
         butPane2.setLayout(new FlowLayout(FlowLayout.CENTER, 2, 2));
-        butPane2.setBackground(OgineColor.BLUE);
-        butPane2.setBorderColor(OgineColor.BLUE);
+        butPane2.setBackground(colors.DARK_BLUE);
+        butPane2.setBorderColor(colors.DARK_BLUE);
 
         butPane3.setBounds(535, 580, 200, 50);
         butPane3.setLayout(new FlowLayout(FlowLayout.CENTER, 2, 2));
-        butPane3.setBackground(OgineColor.BLUE);
-        butPane3.setBorderColor(OgineColor.BLUE);
+        butPane3.setBackground(colors.DARK_BLUE);
+        butPane3.setBorderColor(colors.DARK_BLUE);
 
         paneTitle.setBounds(180, 5, 600, 50);
         paneTitle.setBorder(UnderlineBorder.createUnderlineBorder(Color.WHITE, 2));
@@ -758,7 +739,7 @@ public class MainMenu extends JFrame
         paneTitle.setFont(FORM_TITLE_FONT);
 
         studentClientProfile.setBounds(5, 5, 135, 135);
-        studentClientProfile.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, OgineColor.DARK_BLUE, Color.LIGHT_GRAY));
+        studentClientProfile.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, colors.DARK_BLUE, Color.LIGHT_GRAY));
         studentClientProfile.setVerticalAlignment(JLabel.CENTER);
         studentClientProfile.setHorizontalAlignment(JLabel.CENTER);
 
@@ -782,24 +763,24 @@ public class MainMenu extends JFrame
         addressLabel.setFont(FORM_FONT);
         religionLabel.setFont(FORM_FONT);
         
-        lastnameLabel.setForeground(OgineColor.DARK_BLUE);
-        firstnameLabel.setForeground(OgineColor.DARK_BLUE);
-        birthLabel.setForeground(OgineColor.DARK_BLUE);
-        sexLabel.setForeground(OgineColor.DARK_BLUE);
-        cniLabel.setForeground(OgineColor.DARK_BLUE);
-        bloodLabel.setForeground(OgineColor.DARK_BLUE);
-        fathernameLabel.setForeground(OgineColor.DARK_BLUE);
-        fathernumberLabel.setForeground(OgineColor.DARK_BLUE);
-        fatherfunctionLabel.setForeground(OgineColor.DARK_BLUE);
-        mothernameLabel.setForeground(OgineColor.DARK_BLUE);
-        mothernumberLabel.setForeground(OgineColor.DARK_BLUE);
-        motherfunctionLabel.setForeground(OgineColor.DARK_BLUE);
-        tutornameLabel.setForeground(OgineColor.DARK_BLUE);
-        tutornumberLabel.setForeground(OgineColor.DARK_BLUE);
-        tutorfunctionLabel.setForeground(OgineColor.DARK_BLUE);
-        phonenumberLabel.setForeground(OgineColor.DARK_BLUE);
-        addressLabel.setForeground(OgineColor.DARK_BLUE);
-        religionLabel.setForeground(OgineColor.DARK_BLUE);
+        lastnameLabel.setForeground(colors.DARK_BLUE);
+        firstnameLabel.setForeground(colors.DARK_BLUE);
+        birthLabel.setForeground(colors.DARK_BLUE);
+        sexLabel.setForeground(colors.DARK_BLUE);
+        cniLabel.setForeground(colors.DARK_BLUE);
+        bloodLabel.setForeground(colors.DARK_BLUE);
+        fathernameLabel.setForeground(colors.DARK_BLUE);
+        fathernumberLabel.setForeground(colors.DARK_BLUE);
+        fatherfunctionLabel.setForeground(colors.DARK_BLUE);
+        mothernameLabel.setForeground(colors.DARK_BLUE);
+        mothernumberLabel.setForeground(colors.DARK_BLUE);
+        motherfunctionLabel.setForeground(colors.DARK_BLUE);
+        tutornameLabel.setForeground(colors.DARK_BLUE);
+        tutornumberLabel.setForeground(colors.DARK_BLUE);
+        tutorfunctionLabel.setForeground(colors.DARK_BLUE);
+        phonenumberLabel.setForeground(colors.DARK_BLUE);
+        addressLabel.setForeground(colors.DARK_BLUE);
+        religionLabel.setForeground(colors.DARK_BLUE);
 
         //personal informations field
         lastnameField.setPreferredSize(new Dimension(290, 30));
@@ -861,25 +842,19 @@ public class MainMenu extends JFrame
         studentPicturePicker.setBounds(5, 145, 135, 25);
         studentPicturePicker.setToolTipText(Message.PIC_TAG2);
         studentPicturePicker.setFont(FORM_BUT_FONT);
-        studentPicturePicker.addMouseListener(new OButtonMouseAdapter());
         studentValidate.setPreferredSize(new Dimension(170, 35));
         studentValidate.setToolTipText(Message.OK_TAG);
         studentValidate.setFont(FORM_BUT_FONT);
-        studentValidate.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        studentValidate.setBorder(new RoundedBorder(15));
         studentReset.setPreferredSize(new Dimension(170, 35));
         studentReset.setToolTipText(Message.RESET_TAG);
         studentReset.setFont(FORM_BUT_FONT);
-        studentReset.setCursor(new Cursor(Cursor.HAND_CURSOR));
         studentCancel.setPreferredSize(new Dimension(170, 35));
         studentCancel.setToolTipText(Message.EXIT_TAG);
         studentCancel.setFont(FORM_BUT_FONT);
-        studentCancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         studentUpdate.setPreferredSize(new Dimension(170, 35));
         studentUpdate.setToolTipText(Message.UPDATE_TAG);
         studentUpdate.setFont(FORM_BUT_FONT);
         studentUpdate.setEnabled(false);
-        studentUpdate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         //
         studentRegisterPane.add(paneTitle);
         studentRegisterPane.add(studentClientProfile);
@@ -953,9 +928,9 @@ public class MainMenu extends JFrame
     	JLabel squadIFemalNumLab = null;
 		try
 		{
-			squadINumLab = new JLabel(String.valueOf(SchoolRegister.getSingleton().getMax()));
-			squadIMalNumLab = new JLabel(String.valueOf(SchoolRegister.getSingleton().getMaxMale()));
-	    	squadIFemalNumLab = new JLabel(String.valueOf(SchoolRegister.getSingleton().getMaxFemale()));
+			squadINumLab = new JLabel("" + SchoolRegister.getSingleton().getMax());
+			squadIMalNumLab = new JLabel("" + SchoolRegister.getSingleton().getMaxMale());
+	    	squadIFemalNumLab = new JLabel("" + SchoolRegister.getSingleton().getMaxFemale());
 		} 
 		catch(SchoolRegisterException e)
 		{
@@ -968,7 +943,7 @@ public class MainMenu extends JFrame
     	JPanel squadMalPane = new JPanel(new BorderLayout(1, 1));
     	JPanel squadFemalPane = new JPanel(new BorderLayout(1, 1));
     	JPanel chartPanel = new JPanel(new BorderLayout());
-    	JPanel backPane = new JPanel(new FlowLayout());
+    	JPanel backPane = new JPanel(new FlowLayout(FlowLayout.RIGHT, 75, 5));
     	JPanel butPane = new JPanel(new FlowLayout(FlowLayout.CENTER));
     	JPanel butPane2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
     	JPanel butPane3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -978,12 +953,12 @@ public class MainMenu extends JFrame
     	//
     	midPane.setBackground(Color.WHITE);
     	//
-    	backPane.setBackground(OgineColor.DARK_BLUE);
+    	backPane.setBackground(colors.DARK_BLUE);
     	//
     	butPane.setPreferredSize(new Dimension(600, 100));
-    	butPane.setBackground(OgineColor.DARK_BLUE);
+    	butPane.setBackground(colors.DARK_BLUE);
     	butPane.setBorder(BorderFactory.createTitledBorder(
-    			BorderFactory.createMatteBorder(2, 0, 0, 0, OgineColor.BLUE),
+    			BorderFactory.createMatteBorder(2, 0, 0, 0, colors.BLUE),
     			"FICHES",
     			TitledBorder.CENTER,
 				TitledBorder.DEFAULT_POSITION,
@@ -991,39 +966,39 @@ public class MainMenu extends JFrame
     			Color.WHITE 
 		));
     	//
-    	butPane2.setBackground(OgineColor.DARK_BLUE);
+    	butPane2.setBackground(colors.DARK_BLUE);
     	butPane2.setPreferredSize(new Dimension(250, 70));
-    	butPane2.setBorder(BorderFactory.createTitledBorder(
-    			BorderFactory.createMatteBorder(0, 0, 2, 0, OgineColor.BLUE),
-    			"Fiche d'Inscription",
-    			TitledBorder.CENTER,
-				TitledBorder.BOTTOM,
-    			FORM_TITLE_FONT,
-    			Color.WHITE 
-		));
+//    	butPane2.setBorder(BorderFactory.createTitledBorder(
+//    			BorderFactory.createMatteBorder(0, 0, 2, 0, colors.BLUE),
+//    			"Fiche d'Inscription",
+//    			TitledBorder.CENTER,
+//				TitledBorder.BOTTOM,
+//    			FORM_TITLE_FONT,
+//    			Color.WHITE
+//		));
     	//
-    	butPane3.setBackground(OgineColor.DARK_BLUE);
+    	butPane3.setBackground(colors.DARK_BLUE);
     	butPane3.setPreferredSize(new Dimension(250, 70));
-    	butPane3.setBorder(BorderFactory.createTitledBorder(
-    			BorderFactory.createMatteBorder(0, 0, 2, 0, OgineColor.BLUE),
-    			"Fiche de Ré-Inscription",
-    			TitledBorder.CENTER,
-				TitledBorder.BOTTOM,
-    			FORM_TITLE_FONT,
-    			Color.WHITE 
-		));
+//    	butPane3.setBorder(BorderFactory.createTitledBorder(
+//    			BorderFactory.createMatteBorder(0, 0, 2, 0, colors.BLUE),
+//    			"Fiche de Ré-Inscription",
+//    			TitledBorder.CENTER,
+//				TitledBorder.BOTTOM,
+//    			FORM_TITLE_FONT,
+//    			Color.WHITE
+//		));
     	
     	//
     	squadPane.setBorder(BorderFactory.createEmptyBorder());
-    	squadPane.setBackground(OgineColor.BLUE);
+    	squadPane.setBackground(colors.BLUE);
     	squadPane.addMouseListener(new PaneMouseAdapter());
     	//
     	squadMalPane.setBorder(BorderFactory.createEmptyBorder());
-    	squadMalPane.setBackground(OgineColor.RED);
+    	squadMalPane.setBackground(colors.RED);
     	squadMalPane.addMouseListener(new PaneMouseAdapter());
     	//
     	squadFemalPane.setBorder(BorderFactory.createEmptyBorder());
-    	squadFemalPane.setBackground(OgineColor.DARK_BLUE);
+    	squadFemalPane.setBackground(colors.DARK_BLUE);
     	squadFemalPane.addMouseListener(new PaneMouseAdapter());
     	//
     	saveButPane.setBackground(Color.WHITE);
@@ -1064,20 +1039,14 @@ public class MainMenu extends JFrame
     	nrChartSaveBut.setHorizontalTextPosition(JButton.CENTER);
     	nrChartSaveBut.setVerticalTextPosition(JButton.CENTER);
     	//
-    	newRegisterFormBut = new OButton("NOUVEAU");
+    	newRegisterFormBut = new RoundedButton("NOUVEAU");
     	newRegisterFormBut.setToolTipText(Message.NEW_PAPERS_TAG);
-    	newRegisterFormBut.setBackground(OgineColor.BELGE);
-    	newRegisterFormBut.setForeground(Color.BLACK);
-    	newRegisterFormBut.setBorderColor(Color.BLACK);
-    	newRegisterFormBut.addMouseListener(new NewFormButAdapter());
+        newRegisterFormBut.setPreferredSize(new Dimension(220, 45));
     	//
-    	newReRegisterFormBut = new OButton("NOUVEAU");
+    	newReRegisterFormBut = new RoundedButton("NOUVEAU");
     	newReRegisterFormBut.setToolTipText(Message.NEW_PAPERS_TAG);
-    	newReRegisterFormBut.setBackground(OgineColor.BELGE);
-    	newReRegisterFormBut.setForeground(Color.BLACK);
-    	newReRegisterFormBut.setBorderColor(Color.BLACK);
-    	newReRegisterFormBut.addMouseListener(new NewFormButAdapter());
-    	//
+        newReRegisterFormBut.setPreferredSize(new Dimension(220, 45));
+        //
     	registerChartPane.add(topPane, BorderLayout.NORTH);
     	registerChartPane.add(midPane, BorderLayout.CENTER);
     	registerChartPane.add(backPane, BorderLayout.SOUTH);
@@ -1136,13 +1105,13 @@ public class MainMenu extends JFrame
     {
         tabbedPane.add(registerPane);
         tabbedPane.add(reRegisterPane);
-        tabbedPane.setBackground(Color.MAGENTA);
+        tabbedPane.setBackground(colors.LIGHT_GRAY);
         tabbedPane.setTitleAt(0, "Inscription".toUpperCase());
         tabbedPane.setTitleAt(1, "Ré-Inscription".toUpperCase());
         tabbedPane.setBackgroundAt(0, Color.WHITE);
         tabbedPane.setBackgroundAt(1, Color.WHITE);
-        tabbedPane.setForegroundAt(0, OgineColor.DARK_BLUE);
-        tabbedPane.setForegroundAt(1, OgineColor.DARK_BLUE);
+        tabbedPane.setForegroundAt(0, colors.DARK_BLUE);
+        tabbedPane.setForegroundAt(1, colors.DARK_BLUE);
         tabbedPane.setIconAt(0, Iconifier.formIcon);
         tabbedPane.setIconAt(1, Iconifier.formIcon);
         tabbedPane.setToolTipTextAt(0, Message.REGISTER_FORM_TITLE);
@@ -1211,15 +1180,15 @@ public class MainMenu extends JFrame
         phonenumberField2 = new OTextField(Message.PHONE_TAG);
         addressField2 = new OTextField(Message.ADDR_TAG);
         //
-        registerValidate = new JButton("Enregistrer", Iconifier.validateIcon);
-        registerReset = new JButton("Effacer", Iconifier.errorFormIcon);
-        registerCancel = new JButton("Retour", Iconifier.backIcon);
-        registerUpdate = new JButton("Modifier", Iconifier.updateFormIcon);
+        registerValidate = new RoundedButton("Enregistrer", Iconifier.validateIcon);
+        registerReset = new RoundedButton("Effacer", Iconifier.errorFormIcon);
+        registerCancel = new RoundedButton("Retour", Iconifier.backIcon);
+        registerUpdate = new RoundedButton("Modifier", Iconifier.updateFormIcon);
         //
         regPanel.setBounds(5, 70, 510, 470);
-        regPanel.setBackground(OgineColor.GRAY);
+        regPanel.setBackground(colors.GRAY);
         regPanel.setBorder(BorderFactory.createTitledBorder(
-    		BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.LIGHT_GRAY, OgineColor.DARK_BLUE),
+    		BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.LIGHT_GRAY, colors.DARK_BLUE),
             Message.INFO_INSCRIPTIONS,
             TitledBorder.DEFAULT_JUSTIFICATION,
 			TitledBorder.DEFAULT_POSITION,
@@ -1227,9 +1196,9 @@ public class MainMenu extends JFrame
         ));
 
         infoPanel.setBounds(535, 70, 510, 470);
-        infoPanel.setBackground(OgineColor.BLUE);
+        infoPanel.setBackground(colors.BLUE);
         infoPanel.setBorder(BorderFactory.createTitledBorder(
-    		BorderFactory.createBevelBorder(BevelBorder.RAISED, OgineColor.DARK_BLUE, Color.LIGHT_GRAY),
+    		BorderFactory.createBevelBorder(BevelBorder.RAISED, colors.DARK_BLUE, Color.LIGHT_GRAY),
             Message.INFO_ETUDIANTS,
             TitledBorder.DEFAULT_JUSTIFICATION,
 			TitledBorder.DEFAULT_POSITION,
@@ -1253,7 +1222,7 @@ public class MainMenu extends JFrame
         paneTitle.setFont(FORM_TITLE_FONT);
         //
         registerClientProfile.setBounds(10, 25, 135, 135);
-        registerClientProfile.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, OgineColor.DARK_BLUE, Color.LIGHT_GRAY));
+        registerClientProfile.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, colors.DARK_BLUE, Color.LIGHT_GRAY));
         registerClientProfile.setVerticalAlignment(JLabel.CENTER);
         registerClientProfile.setHorizontalAlignment(JLabel.CENTER);
         //registring information label
@@ -1308,13 +1277,13 @@ public class MainMenu extends JFrame
         phonenumberField2.setBounds(190, 380, 270, 30);
         addressField2.setBounds(190, 420, 270, 30);
         //
-        studentBox.setBackground(OgineColor.GRAY);
-        institutBox.setBackground(OgineColor.GRAY);
-        yearField.getSpinner().setBackground(OgineColor.GRAY);
-        yearField.setBackground(OgineColor.GRAY);
-        specialityBox.setBackground(OgineColor.GRAY);
-        levelBox.setBackground(OgineColor.GRAY);
-        matriculeField.setBackground(OgineColor.GRAY);
+        studentBox.setBackground(colors.GRAY);
+        institutBox.setBackground(colors.GRAY);
+        yearField.getSpinner().setBackground(colors.GRAY);
+        yearField.setBackground(colors.GRAY);
+        specialityBox.setBackground(colors.GRAY);
+        levelBox.setBackground(colors.GRAY);
+        matriculeField.setBackground(colors.GRAY);
         //
         studentBox.setUI(new ComboUI());
         specialityBox.setUI(new ComboUI());
@@ -1370,19 +1339,15 @@ public class MainMenu extends JFrame
         registerValidate.setPreferredSize(new Dimension(150, 35));
         registerValidate.setToolTipText(Message.OK_TAG);
         registerValidate.setFont(FORM_BUT_FONT);
-        registerValidate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         registerReset.setPreferredSize(new Dimension(150, 35));
         registerReset.setToolTipText(Message.RESET_TAG);
         registerReset.setFont(FORM_BUT_FONT);
-        registerReset.setCursor(new Cursor(Cursor.HAND_CURSOR));
         registerCancel.setPreferredSize(new Dimension(150, 35));
         registerCancel.setToolTipText(Message.EXIT_TAG);
         registerCancel.setFont(FORM_BUT_FONT);
-        registerCancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         registerUpdate.setPreferredSize(new Dimension(150, 35));
         registerUpdate.setToolTipText(Message.UPDATE_TAG);
         registerUpdate.setFont(FORM_BUT_FONT);
-        registerUpdate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         registerUpdate.setEnabled(false);
         //
         registerPane.setLayout(null);
@@ -1488,15 +1453,15 @@ public class MainMenu extends JFrame
         phonenumberField3 = new OTextField(Message.PHONE_TAG);
         addressField3 = new OTextField(Message.ADDR_TAG);
 
-        reRegisterValidate = new JButton("Enregistrer", Iconifier.validateIcon);
-        reRegisterReset = new JButton("Effacer", Iconifier.errorFormIcon);
-        reRegisterCancel = new JButton("Retour", Iconifier.backIcon);
-        reRegisterUpdate = new JButton("Modifier", Iconifier.updateFormIcon);
+        reRegisterValidate = new RoundedButton("Enregistrer", Iconifier.validateIcon);
+        reRegisterReset = new RoundedButton("Effacer", Iconifier.errorFormIcon);
+        reRegisterCancel = new RoundedButton("Retour", Iconifier.backIcon);
+        reRegisterUpdate = new RoundedButton("Modifier", Iconifier.updateFormIcon);
 
         regPanel.setBounds(5, 70, 510, 470);
-        regPanel.setBackground(OgineColor.GRAY);
+        regPanel.setBackground(colors.GRAY);
         regPanel.setBorder(BorderFactory.createTitledBorder(
-    		BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.LIGHT_GRAY, OgineColor.DARK_BLUE),
+    		BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.LIGHT_GRAY, colors.DARK_BLUE),
             Message.INFO_INSCRIPTIONS,
             TitledBorder.DEFAULT_JUSTIFICATION,
 			TitledBorder.DEFAULT_POSITION,
@@ -1504,9 +1469,9 @@ public class MainMenu extends JFrame
         ));
 
         infoPanel.setBounds(535, 70, 510, 470);
-        infoPanel.setBackground(OgineColor.BLUE);
+        infoPanel.setBackground(colors.BLUE);
         infoPanel.setBorder(BorderFactory.createTitledBorder(
-    		BorderFactory.createBevelBorder(BevelBorder.RAISED, OgineColor.DARK_BLUE, Color.LIGHT_GRAY),
+    		BorderFactory.createBevelBorder(BevelBorder.RAISED, colors.DARK_BLUE, Color.LIGHT_GRAY),
             Message.INFO_ETUDIANTS,
             TitledBorder.DEFAULT_JUSTIFICATION,
 			TitledBorder.DEFAULT_POSITION,
@@ -1533,7 +1498,7 @@ public class MainMenu extends JFrame
         paneTitle.setFont(FORM_TITLE_FONT);
 
         reRegisterClientProfile.setBounds(10, 25, 135, 135);
-        reRegisterClientProfile.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, OgineColor.DARK_BLUE, Color.LIGHT_GRAY));
+        reRegisterClientProfile.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, colors.DARK_BLUE, Color.LIGHT_GRAY));
         reRegisterClientProfile.setVerticalAlignment(JLabel.CENTER);
         reRegisterClientProfile.setHorizontalAlignment(JLabel.CENTER);
 
@@ -1605,12 +1570,12 @@ public class MainMenu extends JFrame
         specialityBox2.setSelectedIndex(-1);
         levelBox2.setSelectedIndex(-1);
         //
-        studentBox2.setBackground(OgineColor.GRAY);
-        institutBox2.setBackground(OgineColor.GRAY);
-        yearField2.getSpinner().setBackground(OgineColor.GRAY);
-        yearField2.setBackground(OgineColor.GRAY);
-        specialityBox2.setBackground(OgineColor.GRAY);
-        levelBox2.setBackground(OgineColor.GRAY);
+        studentBox2.setBackground(colors.GRAY);
+        institutBox2.setBackground(colors.GRAY);
+        yearField2.getSpinner().setBackground(colors.GRAY);
+        yearField2.setBackground(colors.GRAY);
+        specialityBox2.setBackground(colors.GRAY);
+        levelBox2.setBackground(colors.GRAY);
         matriculeField2.setBackground(Color.WHITE);
         //
         studentBox2.setUI(new FlatComboBoxUI(){
@@ -1697,19 +1662,15 @@ public class MainMenu extends JFrame
         reRegisterValidate.setPreferredSize(new Dimension(150, 35));
         reRegisterValidate.setToolTipText(Message.OK_TAG);
         reRegisterValidate.setFont(FORM_BUT_FONT);
-        reRegisterValidate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         reRegisterReset.setPreferredSize(new Dimension(150, 35));
         reRegisterReset.setToolTipText(Message.RESET_TAG);
         reRegisterReset.setFont(FORM_BUT_FONT);
-        reRegisterReset.setCursor(new Cursor(Cursor.HAND_CURSOR));
         reRegisterCancel.setPreferredSize(new Dimension(150, 35));
         reRegisterCancel.setToolTipText(Message.EXIT_TAG);
         reRegisterCancel.setFont(FORM_BUT_FONT);
-        reRegisterCancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
         reRegisterUpdate.setPreferredSize(new Dimension(150, 35));
         reRegisterUpdate.setToolTipText(Message.EXIT_TAG);
         reRegisterUpdate.setFont(FORM_BUT_FONT);
-        reRegisterUpdate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         reRegisterUpdate.setEnabled(false);
         //
         reRegisterPane.setLayout(null);
@@ -1800,16 +1761,15 @@ public class MainMenu extends JFrame
         levelSorter = new JComboBox<>();
         specSorter = new JComboBox<>();
 
-        
-        sorterBut = new OButton("Trier");
-        previewBut = new JButton("Voir", Iconifier.previewIcon);
-        updateBut = new JButton("Modifier", Iconifier.updateFormIcon);
-        deleteBut = new JButton("Supprimer", Iconifier.deleteIcon16px);
-        cancelBut = new JButton("Retour", Iconifier.backIcon);
+        sorterBut = new RoundedButton("Trier");
+        previewBut = new RoundedButton("Voir", Iconifier.previewIcon);
+        updateBut = new RoundedButton("Modifier", Iconifier.updateFormIcon);
+        deleteBut = new RoundedButton("Supprimer", Iconifier.deleteIcon16px);
+        cancelBut = new RoundedButton("Retour", Iconifier.backIcon);
 
         dataPane2.setBounds(405, 60, 670, 485);
         dataPane2.setLayout(null);
-        dataPane2.setBorder(BorderFactory.createLineBorder(OgineColor.DARK_BLUE, 2, true));
+        dataPane2.setBorder(BorderFactory.createLineBorder(colors.DARK_BLUE, 2, true));
 
         tablePane.setBounds(3, 3, 666, 481);
         tablePane.setBackground(Color.YELLOW);
@@ -1820,8 +1780,8 @@ public class MainMenu extends JFrame
 
 		searchPane.setBounds(15, 60, 380, 485);
 		searchPane.setLayout(new VerticalFlowLayout(VerticalFlowLayout.TOP, 55, 20));
-		searchPane.setBorder(BorderFactory.createLineBorder(OgineColor.DARK_BLUE, 2, true));
-		searchPane.setBackground(OgineColor.DARK_BLUE);
+		searchPane.setBorder(BorderFactory.createLineBorder(colors.DARK_BLUE, 2, true));
+		searchPane.setBackground(colors.DARK_BLUE);
 
         optionPane.setBounds(15, 560, 650, 80);
         optionPane.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 2));
@@ -1881,8 +1841,8 @@ public class MainMenu extends JFrame
         	header = dataTable.getTableHeader();
     		header.setFont(header.getFont().deriveFont(Font.BOLD));
     		header.setForeground(Color.WHITE);
-    		header.setBackground(OgineColor.DARK_BLUE);
-    		header.setBorder(BorderFactory.createLineBorder(OgineColor.DARK_BLUE));
+    		header.setBackground(colors.DARK_BLUE);
+    		header.setBorder(BorderFactory.createLineBorder(colors.DARK_BLUE));
         }});
         dataTable.getTableHeader().setReorderingAllowed(true);
         dataTable.setDefaultRenderer(Object.class, new BoldTableCellRenderer());
@@ -1904,62 +1864,62 @@ public class MainMenu extends JFrame
         cancelBut.setPreferredSize(new Dimension(180, 35));
         cancelBut.setToolTipText(Message.CANCEL_TAG);
         cancelBut.setFont(FORM_BUT_FONT);
-        
-        sorterBut.addMouseListener(new OButtonMouseAdapter() {
-        	@Override
-        	public void mousePressed(MouseEvent e)
-        	{
-        		super.mousePressed(e);
-        		if(e.getSource() instanceof OButton button)
-        		{
-        			button.setFont(button.getFont().deriveFont(com.lowagie.text.Font.UNDERLINE));
-        			button.setForeground(OgineColor.BELGE);
-        			button.setBackground(OgineColor.DARK_GREEN);
-        			button.setBorderColor(OgineColor.DARK_GREEN);
-        		}
-        	}
-
-        	@Override
-        	public void mouseReleased(MouseEvent e)
-        	{
-        		super.mouseReleased(e);
-        		if(e.getSource() instanceof OButton button)
-        		{
-        			button.setFont(button.getFont().deriveFont(Font.BOLD));
-        			sorterBut.setForeground(OgineColor.BELGE);
-        	        sorterBut.setBackground(OgineColor.DARK_GREEN.brighter());
-        	        sorterBut.setBorderColor(OgineColor.DARK_GREEN.brighter());
-        		}
-        	}
-
-        	@Override
-        	public void mouseEntered(MouseEvent e) 
-        	{
-        		super.mouseEntered(e);
-        		if(e.getSource() instanceof OButton button)
-        		{
-        			button.setForeground(Color.BLACK);
-        			button.setBackground(new Color(240, 240, 240));
-        			button.setBorderColor(new Color(240, 240, 240));
-        		}
-        	}
-
-        	@Override
-        	public void mouseExited(MouseEvent e) 
-        	{
-        		super.mouseExited(e);
-        		if(e.getSource() instanceof OButton button)
-        		{
-        			sorterBut.setForeground(OgineColor.BELGE);
-        	        sorterBut.setBackground(OgineColor.DARK_GREEN.brighter());
-        	        sorterBut.setBorderColor(OgineColor.DARK_GREEN.brighter());
-        		}
-        	}
-        });
-        
-        sorterBut.setForeground(OgineColor.BELGE);
-        sorterBut.setBackground(OgineColor.DARK_GREEN.brighter());
-        sorterBut.setBorderColor(OgineColor.DARK_GREEN.brighter());
+//
+//        sorterBut.addMouseListener(new OButtonMouseAdapter() {
+//        	@Override
+//        	public void mousePressed(MouseEvent e)
+//        	{
+//        		super.mousePressed(e);
+//        		if(e.getSource() instanceof OButton button)
+//        		{
+//        			button.setFont(button.getFont().deriveFont(com.lowagie.text.Font.UNDERLINE));
+//        			button.setForeground(colors.BELGE);
+//        			button.setBackground(colors.DARK_GREEN);
+//        			button.setBorderColor(colors.DARK_GREEN);
+//        		}
+//        	}
+//
+//        	@Override
+//        	public void mouseReleased(MouseEvent e)
+//        	{
+//        		super.mouseReleased(e);
+//        		if(e.getSource() instanceof OButton button)
+//        		{
+//        			button.setFont(button.getFont().deriveFont(Font.BOLD));
+//        			sorterBut.setForeground(colors.BELGE);
+//        	        sorterBut.setBackground(colors.DARK_GREEN.brighter());
+////        	        sorterBut.setBorderColor(colors.DARK_GREEN.brighter());
+//        		}
+//        	}
+//
+//        	@Override
+//        	public void mouseEntered(MouseEvent e)
+//        	{
+//        		super.mouseEntered(e);
+//        		if(e.getSource() instanceof RoundedButton button)
+//        		{
+//        			button.setForeground(Color.BLACK);
+//        			button.setBackground(new Color(240, 240, 240));
+////        			button.setBorderColor(new Color(240, 240, 240));
+//        		}
+//        	}
+//
+//        	@Override
+//        	public void mouseExited(MouseEvent e)
+//        	{
+//        		super.mouseExited(e);
+//        		if(e.getSource() instanceof RoundedButton button)
+//        		{
+//        			sorterBut.setForeground(colors.BELGE);
+//        	        sorterBut.setBackground(colors.DARK_GREEN.brighter());
+////        	        sorterBut.setBorderColor(colors.DARK_GREEN.brighter());
+//        		}
+//        	}
+//        });
+//
+//        sorterBut.setForeground(colors.BELGE);
+//        sorterBut.setBackground(colors.DARK_GREEN.brighter());
+//        sorterBut.setBorderColor(colors.DARK_GREEN.brighter());
         
         dataPane.setLayout(null);
         dataPane.setBackground(Color.WHITE);
@@ -1973,10 +1933,10 @@ public class MainMenu extends JFrame
         searchPane.add(searchField);
         searchPane.add(sorterLabel);
 //        searchPane.add(sorterPane);
-        searchPane.add(opa1);
-        searchPane.add(opa2);
-        searchPane.add(opa3);
-        searchPane.add(opa4);
+//        searchPane.add(opa1);
+//        searchPane.add(opa2);
+//        searchPane.add(opa3);
+//        searchPane.add(opa4);
         
         opa1.add(yearSorter);
         opa2.add(instiSorter);
@@ -2078,9 +2038,9 @@ public class MainMenu extends JFrame
         listReportIcon = new JLabel(new ImageIcon(Iconifier.printerIcon.getImage().getScaledInstance(256, 256, Image.SCALE_DEFAULT)));
         fullReportIcon = new JLabel(new ImageIcon(Iconifier.printerIcon.getImage().getScaledInstance(256, 256, Image.SCALE_DEFAULT)));
         
-        enregReportBut = new JButton("Imprimer", Iconifier.printIcon);
-        listReportBut = new JButton("Imprimer", Iconifier.printIcon);
-        fullReportBut = new JButton("Imprimer", Iconifier.printIcon);
+        enregReportBut = new RoundedButton("Imprimer", Iconifier.printIcon);
+        listReportBut = new RoundedButton("Imprimer", Iconifier.printIcon);
+        fullReportBut = new RoundedButton("Imprimer", Iconifier.printIcon);
 
         paneTitle.setPreferredSize(new Dimension (600, 50));
         paneTitle.setBorder(UnderlineBorder.createUnderlineBorder(Color.BLACK, 2));
@@ -2160,55 +2120,39 @@ public class MainMenu extends JFrame
 			@Override
 			public void run() 
 			{
-				studentPicturePicker.addActionListener(e -> {
-					StudentRegisterController.addPicture(MainMenu.this);
-				});
+                MainMenu owner = MainMenu.this;
+				studentPicturePicker.addActionListener(e -> StudentController.addPicture(owner));
 		        	
-				studentValidate.addActionListener(e -> {
-					StudentRegisterController.addStudent(MainMenu.this);
-				});
-		        studentReset.addActionListener(e -> {
-		        	StudentRegisterController.askResetForm(MainMenu.this);
-		        });
-		        studentUpdate.addActionListener(e ->{
-		        	StudentRegisterController.confirmUpdate(MainMenu.this);
-		        });
-		        studentCancel.addActionListener(e -> {
-		        	StudentRegisterController.cancel(MainMenu.this);
-		        });
+				studentValidate.addActionListener(e -> StudentController.addStudent(owner));
+		        studentReset.addActionListener(e -> StudentController.askResetForm(owner));
+		        studentUpdate.addActionListener(e -> StudentController.updateStudent(owner));
+		        studentCancel.addActionListener(e -> StudentController.cancel(owner));
 		        //
+		        RegisterController.setData(owner);
+                RegisterController.setBoxListener(owner);
+                //
 		        registerValidate.addActionListener(e ->{
-		        	RegisterValidateController.confirm(MainMenu.this);
-		            DataTableController.populateTable(MainMenu.this);
+		        	RegisterController.addRegister(owner);
+		            DataTableController.populateTable(owner);
 		        });
-		        registerReset.addActionListener(e -> {
-		        	RegisterResetController.clear(MainMenu.this);
-		        });
-		        registerUpdate.addActionListener(e -> {
-		        	RegisterUpdateController.confirm(MainMenu.this);
-		        });
-		        registerCancel.addActionListener(e -> {
-		        	RegisterCancelController.cancel(MainMenu.this);
-		        });
-		        //
-		        RegisterInfoController.inform(MainMenu.this);
+		        registerReset.addActionListener(e -> RegisterController.clear(owner));
+		        registerUpdate.addActionListener(e -> RegisterController.updateRegister(owner));
+		        registerCancel.addActionListener(e -> RegisterController.cancel(owner));
 		        //
 		        reRegisterValidate.addActionListener(e ->{});
-//		        DataTableController.populateTable(this)
+		        DataTableController.populateTable(MainMenu.this);
 //		        reRegisterReset.addActionListener(e ->{
 //		        	ReRegisterResetController.clear(this);});
 //		        reRegisterUpdate.addActionListener(e ->{
 //		        	ReRegisterUpdateController.confirm(this);});
-		        reRegisterCancel.addActionListener(e ->{
-		        	ReRegisterCancelController.cancel(MainMenu.this);
-		        });
-		        ReRegisterInfoController.inform(MainMenu.this);
-		        DataTableController.populateTable(MainMenu.this);
+		        reRegisterCancel.addActionListener(e -> ReRegisterCancelController.cancel(owner));
+		        ReRegisterInfoController.inform(owner);
+		        DataTableController.populateTable(owner);
 		        searchField.addKeyListener(new KeyAdapter(){
 		            @Override
 		            public void keyReleased(KeyEvent e)
 		            {
-		                DataTableController.populateFromSearch(MainMenu.this);
+		                DataTableController.populateFromSearch(owner);
 		            }	
 		        });
 		        searchField.addMouseListener(new MouseAdapter(){
@@ -2218,32 +2162,18 @@ public class MainMenu extends JFrame
 						super.mouseClicked(e);
 						if(SwingUtilities.isLeftMouseButton(e) && searchField.checkMouseOver(e.getPoint()))
 						{
-							DataTableController.populateFromSearch(MainMenu.this);
+							DataTableController.populateFromSearch(owner);
 						}
 					}
 				});
 		        //
-		        updateBut.addActionListener(e -> {
-		        	DataTableUpdateController.confirm(MainMenu.this);
-		        });
-		        cancelBut.addActionListener(e ->{
-		        	DataTableCancelController.cancel(MainMenu.this);
-		    	});
-		        deleteBut.addActionListener(e ->{
-		        	DataTableDeleteController.erase(MainMenu.this);
-		    	});
-		        previewBut.addActionListener(e ->{
-		        	DataTableShowController.showCard(MainMenu.this);
-		    	});
-		        enregReportBut.addActionListener(e-> {
-		            JaspertReportStudentController.printReport(MainMenu.this);
-		        });
-		        listReportBut.addActionListener(e-> {
-		            JaspertReportRegisterController.printReport(MainMenu.this);
-		        });
-		        fullReportBut.addActionListener(e-> {
-		            JasperReportSchoolStudentController.printReport(MainMenu.this);
-		        });
+		        updateBut.addActionListener(e -> DataTableController.confirmUpdate(owner));
+		        cancelBut.addActionListener(e -> DataTableController.cancel(owner));
+		        deleteBut.addActionListener(e -> DataTableController.delete(owner));
+		        previewBut.addActionListener(e -> DataTableController.showCard(owner));
+		        enregReportBut.addActionListener(e-> JaspertReportStudentController.printReport(owner));
+		        listReportBut.addActionListener(e-> JaspertReportRegisterController.printReport(owner));
+		        fullReportBut.addActionListener(e-> JasperReportSchoolStudentController.printReport(owner));
 		        //
 		        lastnameField.addKeyListener(alphaKeyListener);
 		        firstnameField.addKeyListener(alphaKeyListener);
@@ -2287,7 +2217,7 @@ public class MainMenu extends JFrame
         return centerPane;
     }
 
-    public Dashboard getDash() 
+    public SideNavBar getDash()
     {
         return dash;
     }
@@ -2409,17 +2339,17 @@ public class MainMenu extends JFrame
         return studentPicturePicker;
     }
 
-    public JButton getStudentValidate()
+    public RoundedButton getStudentValidate()
     {
         return studentValidate;
     }
 
-    public JButton getStudentReset() 
+    public RoundedButton getStudentReset()
     {
         return studentReset;
     }
 
-    public JButton getStudentUpdate()
+    public RoundedButton getStudentUpdate()
     {
         return studentUpdate;
     }
@@ -2494,22 +2424,22 @@ public class MainMenu extends JFrame
         return registerClientProfile;
     }
 
-    public JButton getRegisterValidate()
+    public RoundedButton getRegisterValidate()
     {
         return registerValidate;
     }
 
-    public JButton getRegisterReset()
+    public RoundedButton getRegisterReset()
     {
         return registerReset;
     }
 
-    public JButton getRegisterUpdate()
+    public RoundedButton getRegisterUpdate()
     {
         return registerUpdate;
     }
 
-    public JButton getRegisterCancel()
+    public RoundedButton getRegisterCancel()
     {
         return registerCancel;
     }
