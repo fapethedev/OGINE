@@ -47,7 +47,7 @@ public class SchoolRegister
 			var levelId = inputRegister.levelId();
 			var specialityId = inputRegister.specialityId();
 			
-			var insertQuery = "INSERT INTO active_registers(matricule, year, student_id, institut_id, level_id, speciality_id) VALUES(?,?,?,?,?,?)";
+			var insertQuery = "INSERT INTO active_registers(matricule, years, student_id, institut_id, level_id, speciality_id) VALUES(?,?,?,?,?,?)";
 			var statement = connection.prepareStatement(insertQuery);
 			statement.setString(1, matricule);
 			statement.setInt(2, year);
