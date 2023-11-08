@@ -78,7 +78,7 @@ public class SpecialityManager
 			String levelName = inputLevel.levelName();
 			//String query = "(SELECT id FROM level WHERE level_name=? AND institut_id =?)";
 	        String mainSelectQuery = "SELECT speciality_name FROM specialities WHERE level_id = "
-	                + "(SELECT id FROM level_view WHERE level_name=? AND institut_id =?)";
+	                + "(SELECT id FROM levels WHERE level_name=? AND institut_id =?)";
 			try(var statement = connection.prepareStatement(mainSelectQuery))
 			{
 				statement.setString(1, levelName);

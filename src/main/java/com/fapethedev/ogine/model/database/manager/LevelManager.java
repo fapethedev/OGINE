@@ -77,19 +77,18 @@ public class LevelManager
 		try
 		{
 			String institutName = inputInstitut.institutName();
-			String query = new String("SELECT level_name FROM levels WHERE institut_id = (SELECT id FROM institut_view WHERE institut_name=?)");
-			
+			String query = "SELECT * FROM levels WHERE institut_id = (SELECT id FROM instituts WHERE institut_name=?)"
+					;
 			try(var statement = connection.prepareStatement(query))
 			{
 				statement.setString(1, institutName);
+
 				try(ResultSet rs = statement.executeQuery())
 				{
 					while(rs.next())
 					{
-						String outputLevel = rs.getString("level_name");
-						levelFromDB.add(new Level(rs.getInt(1), outputLevel));
+						levelFromDB.add(new Level(rs.getInt(1), rs.getString(2)));
 					}
-					
 					return levelFromDB;
 				}
 			}
